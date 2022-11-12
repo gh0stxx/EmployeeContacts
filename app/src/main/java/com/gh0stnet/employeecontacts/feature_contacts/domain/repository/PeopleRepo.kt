@@ -9,8 +9,8 @@ interface PeopleRepo {
 
     suspend fun getContactById(id: Int): People?
 
-    suspend fun insertContact(people: People)
+    suspend fun insertContact(person: People)
 
-    suspend fun deleteContact(people: People)
+    suspend fun deleteContact(person: People)
 
 }

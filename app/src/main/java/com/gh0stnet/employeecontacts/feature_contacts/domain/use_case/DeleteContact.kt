@@ -7,7 +7,7 @@ class DeleteContact(
     private val repo: PeopleRepo
 ) {
 
-    suspend operator fun invoke(people: People) {
-        repo.deleteContact(people)
+    suspend operator fun invoke(person: People) {
+        repo.deleteContact(person)
     }
 }

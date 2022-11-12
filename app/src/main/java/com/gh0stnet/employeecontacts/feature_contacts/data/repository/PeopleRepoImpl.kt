@@ -16,11 +16,11 @@ class PeopleRepoImpl(
         return dao.getContactById(id)
     }
 
-    override suspend fun insertContact(people: People) {
-        dao.insertContact(people)
+    override suspend fun insertContact(person: People) {
+        dao.insertContact(person)
     }
 
-    override suspend fun deleteContact(people: People) {
-        dao.deleteContact(people)
+    override suspend fun deleteContact(person: People) {
+        dao.deleteContact(person)
     }
 }

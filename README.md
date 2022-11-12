@@ -1,4 +1,3 @@
 # EmployeeContacts
-Tafe project
 
-Tafe Assignment 
+Tafe Assignment Mobile Dev

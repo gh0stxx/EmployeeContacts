@@ -1,4 +1,4 @@
-package com.gh0stnet.employeecontacts
+package com.gh0stnet.employeecontacts.feature_contacts.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

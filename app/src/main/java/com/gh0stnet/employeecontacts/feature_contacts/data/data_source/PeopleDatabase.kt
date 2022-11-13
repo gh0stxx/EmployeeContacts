@@ -11,4 +11,8 @@ import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 abstract class PeopleDatabase : RoomDatabase() {
 
     abstract val contactDao: ContactDao
+
+    companion object {
+        const val DATABASE_NAME = "contact_db"
+    }
 }

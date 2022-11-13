@@ -3,6 +3,7 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.com
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,7 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gh0stnet.employeecontacts.R
@@ -30,11 +30,13 @@ import com.gh0stnet.employeecontacts.R
 @Composable
 fun ContactItem(
     // person: People,
-    // modifier: Modifier,
+     //modifier: Modifier,
 ) {
-    Surface {
+    Box() {
+
         Row(
             Modifier
+                //.matchParentSize()
                 .background(Color.White),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -70,11 +72,3 @@ fun ContactItem(
     }
 }
 
-@Preview
-@Composable
-fun Preview(
-    //   person: People,
-    //   modifier: Modifier,
-) {
-    ContactItem()
-}

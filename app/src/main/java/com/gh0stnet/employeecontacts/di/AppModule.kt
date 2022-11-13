@@ -12,10 +12,11 @@ import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.GetContact
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(Singleton::class)
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides

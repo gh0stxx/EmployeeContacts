@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,6 +15,7 @@ import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.Cont
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactViewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
 import com.gh0stnet.employeecontacts.ui.theme.EmployeeContactsTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,25 +25,34 @@ class MainActivity : ComponentActivity() {
         setContent {
             EmployeeContactsTheme {
 
+                val systemUiController = rememberSystemUiController()
+                SideEffect {
+                    systemUiController.setStatusBarColor(
+                        color = Color.Red,
+                        darkIcons = false
+                    )
+                }
                 Surface(
                     color = MaterialTheme.colors.background
                 ) {
-                        val navController = rememberNavController()
-                        NavHost(
-                            navController = navController,
-                            startDestination = Screen.ContactScreen.route
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.ContactScreen.route
 
-                            ) {
-                            composable(route = Screen.ContactScreen.route) {
-                                val viewModel = hiltViewModel<ContactViewModel>()
-                                ContactScreen(viewModel = viewModel)
+                    ) {
+                        composable(route = Screen.ContactScreen.route) {
+                            val viewModel = hiltViewModel<ContactViewModel>()
+                            ContactScreen(viewModel = viewModel)
 
-                            }
                         }
                     }
                 }
             }
         }
     }
+
+
+}
 
 

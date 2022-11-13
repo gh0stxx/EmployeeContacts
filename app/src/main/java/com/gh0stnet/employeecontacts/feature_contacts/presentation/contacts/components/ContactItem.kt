@@ -32,7 +32,7 @@ fun ContactItem(
     // person: People,
      //modifier: Modifier,
 ) {
-    Box() {
+    Box {
 
         Row(
             Modifier

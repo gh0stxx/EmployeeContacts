@@ -32,7 +32,7 @@ fun ContactItem(
     // person: People,
     // modifier: Modifier,
 ) {
-    Surface() {
+    Surface {
         Row(
             Modifier
                 .background(Color.White),

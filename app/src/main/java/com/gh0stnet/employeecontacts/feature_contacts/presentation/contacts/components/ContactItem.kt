@@ -26,24 +26,33 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
-import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
 
 @Composable
 fun ContactItem(
     person: People,
     modifier: Modifier,
-    navController: NavController
+    onClick: () -> Unit,
+    navigator: DestinationsNavigator
 
 ) {
-    Box(modifier = Modifier.clickable {
-        navController.navigate(
-            Screen.ProfileScreen.route +
-                    "?contactId=${person}"
-        )
-    }) {
+    Box(Modifier.clickable{ navigator.navigate(
+                        ProfileScreenDestination(
+                            People(
+                                firstName = person.firstName,
+                                lastName = person.lastName,
+                                state =  person.state,
+                                id = person.id,
+                                address = person.address,
+                                country = person.country,
+                                dept = person.dept,
+                                phoneNumber = person.phoneNumber
+                              )
+                        ) )}){
 
         Row(
             modifier = Modifier

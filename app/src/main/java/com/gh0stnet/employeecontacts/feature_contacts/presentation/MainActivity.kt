@@ -13,12 +13,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactScreen
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactViewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.profile.ProfileScreen
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.profile.ProfileViewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
 import com.gh0stnet.employeecontacts.ui.theme.EmployeeContactsTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,44 +30,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EmployeeContactsTheme {
-
-                val systemUiController = rememberSystemUiController()
-                SideEffect {
-                    systemUiController.setStatusBarColor(
-                        color = Color.Red,
-                        darkIcons = false
-                    )
-                }
-                Surface(
-                    color = MaterialTheme.colors.background
-                ) {
-                    val navController = rememberNavController()
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.ContactScreen.route
-
-                    ) {
-                        composable(route = Screen.ContactScreen.route) {
-                            ContactScreen(navController = navController)
-                        }
-                        composable(
-                            route = Screen.ProfileScreen.route +
-                                    "?contactId={contactId}",
-                            arguments = listOf(
-                                navArgument(
-                                    name = "contactId"
-                                ) {
-                                    type = NavType.IntType
-                                    defaultValue = -1
-                                }
-                        )
-                       ) {
-                            ProfileScreen(
-                                navController = navController
-                            )
-                        }
-                    }
-                }
+DestinationsNavHost(navGraph = NavGraphs.root)
             }
         }
     }

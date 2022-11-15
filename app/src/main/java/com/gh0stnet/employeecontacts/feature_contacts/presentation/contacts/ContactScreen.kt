@@ -28,11 +28,17 @@ import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.components.ContactItem
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import android.os.Parcelable
+import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@Destination(start = true)
 @Composable
-fun ContactScreen(navController: NavController, viewModel: ContactViewModel = hiltViewModel()) {
+fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel = hiltViewModel()) {
 
     val state = viewModel.state.value
     val scope = rememberCoroutineScope()
@@ -63,7 +69,20 @@ fun ContactScreen(navController: NavController, viewModel: ContactViewModel = hi
 
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.contact) { contact ->
-                    ContactItem(person = contact, modifier = Modifier.fillMaxWidth(),navController)
+                    ContactItem(person = contact, modifier = Modifier.fillMaxWidth(),navigator = navigator, onClick =  { navigator.navigate(
+                        ProfileScreenDestination(
+                            People(
+                                firstName = contact.firstName,
+                                lastName = contact.lastName,
+                                state =  contact.state,
+                                id = contact.id,
+                                address = contact.address,
+                                country = contact.country,
+                                dept = contact.dept,
+                                phoneNumber = contact.phoneNumber
+                            )
+                        )
+                    ) })
                 }
             }
 

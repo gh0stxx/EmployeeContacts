@@ -4,7 +4,20 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+        id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp' version '1.7.20-1.0.8' // Depends on your kotlin version
 }
+kotlin {
+    sourceSets {
+        debug {
+            kotlin.srcDir("build/generated/ksp/debug/kotlin")
+        }
+        release {
+            kotlin.srcDir("build/generated/ksp/release/kotlin")
+        }
+    }
+}
+
 android {
     namespace 'com.gh0stnet.employeecontacts'
     compileSdk 33
@@ -94,6 +107,9 @@ dependencies {
        implementation "com.google.dagger:hilt-android:2.44.1"
         kapt "com.google.dagger:hilt-compiler:2.44.1"
 
+implementation 'io.github.raamcosta.compose-destinations:core:1.7.26-beta'
+
+ksp "io.github.raamcosta.compose-destinations:ksp:1.7.26-beta"
 }
 kapt {
   correctErrorTypes = true

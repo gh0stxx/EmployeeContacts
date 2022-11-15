@@ -33,12 +33,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.R
+import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @Composable
-fun ProfileScreen(navController: NavController,
-viewModel: ProfileViewModel = hiltViewModel()) {
+fun ProfileScreen(
+viewModel: ProfileViewModel = hiltViewModel(), people: People) {
+
     Surface(modifier = Modifier.fillMaxSize()) {
         Column {
 
@@ -86,7 +91,7 @@ viewModel: ProfileViewModel = hiltViewModel()) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "Fred Flintstone", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                Text(text = people.firstName, fontSize = 24.sp, fontWeight = FontWeight.Bold)
                 Text(text = "Human Resources", fontSize = 12.sp)
 
             }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.DrawerValue
@@ -62,12 +63,7 @@ fun ContactScreen(navController: NavController, viewModel: ContactViewModel = hi
 
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.contact) { contact ->
-                    ContactItem(person = contact, modifier = Modifier.fillMaxWidth().clickable {
-                        navController.navigate(
-                            Screen.ProfileScreen.route +
-                                    "?contactId=${contact.id}"
-                        )
-                    })
+                    ContactItem(person = contact, modifier = Modifier.fillMaxWidth(),navController)
                 }
             }
 

@@ -3,6 +3,7 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.com
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,18 +26,27 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
 
 @Composable
 fun ContactItem(
     person: People,
     modifier: Modifier,
+    navController: NavController
+
 ) {
-    Box {
+    Box(modifier = Modifier.clickable {
+        navController.navigate(
+            Screen.ProfileScreen.route +
+                    "?contactId=${person}"
+        )
+    }) {
 
         Row(
-            Modifier
+            modifier = Modifier
                 //.matchParentSize()
                 .background(Color.White),
             verticalAlignment = Alignment.CenterVertically

@@ -26,11 +26,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gh0stnet.employeecontacts.R
+import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 
 @Composable
 fun ContactItem(
-    // person: People,
-     //modifier: Modifier,
+    person: People,
+    modifier: Modifier,
 ) {
     Box {
 
@@ -65,8 +66,8 @@ fun ContactItem(
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Fred Flintstone", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                Text(text = "Human Resources", fontSize = 10.sp, color = Color.Red)
+                Text(text = person.firstName,fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                Text(text = person.dept, fontSize = 10.sp, color = Color.Red)
             }
         }
     }

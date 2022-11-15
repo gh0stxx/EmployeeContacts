@@ -42,9 +42,7 @@ class MainActivity : ComponentActivity() {
 
                     ) {
                         composable(route = Screen.ContactScreen.route) {
-                            val viewModel = hiltViewModel<ContactViewModel>()
-                            ContactScreen(viewModel = viewModel)
-
+                            ContactScreen(navController = navController)
                         }
                     }
                 }

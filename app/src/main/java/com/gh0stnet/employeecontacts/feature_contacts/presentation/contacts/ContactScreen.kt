@@ -1,9 +1,10 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.DrawerValue
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
@@ -17,15 +18,21 @@ import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.components.ContactItem
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ContactScreen(viewModel: ContactViewModel) {
+fun ContactScreen(navController: NavController, viewModel: ContactViewModel = hiltViewModel()) {
+
+    val state = viewModel.state.value
+    val scope = rememberCoroutineScope()
 
     val systemUiController = rememberSystemUiController()
     SideEffect {
@@ -50,27 +57,16 @@ fun ContactScreen(viewModel: ContactViewModel) {
         },
         drawerContent = { Text(text = "drawerContent") },
         content = {
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-            ) {
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
-                ContactItem()
+
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                items(state.contact) { contact ->
+                    ContactItem(person = contact, modifier = Modifier.fillMaxWidth())
+                }
             }
+
+
         }
+
         // bottomBar = { BottomAppBar(backgroundColor = materialBlue700) { Text("BottomAppBar") } }
     )
 

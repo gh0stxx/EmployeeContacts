@@ -68,7 +68,7 @@ fun ProfileScreen() {
 
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.profile_pic2),
+                        painter = painterResource(id = R.drawable.profile_pic1),
                         contentDescription = "Profile pic",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier

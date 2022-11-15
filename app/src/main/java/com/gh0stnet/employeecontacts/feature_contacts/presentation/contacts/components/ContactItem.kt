@@ -46,7 +46,7 @@ fun ContactItem(
                 modifier = Modifier.padding(10.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.profile_pic2),
+                    painter = painterResource(id = R.drawable.profile_pic1),
                     contentDescription = "Profile picture",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier

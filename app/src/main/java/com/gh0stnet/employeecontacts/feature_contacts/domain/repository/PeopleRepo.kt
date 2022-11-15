@@ -5,12 +5,14 @@ import kotlinx.coroutines.flow.Flow
 
 interface PeopleRepo {
 
-    fun getContact(): Flow<List<People>>
+    fun getContacts(): Flow<List<People>>
 
     suspend fun getContactById(id: Int): People?
 
     suspend fun insertContact(person: People)
 
     suspend fun deleteContact(person: People)
+
+
 
 }

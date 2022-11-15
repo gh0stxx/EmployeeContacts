@@ -32,10 +32,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.R
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(navController: NavController,
+viewModel: ProfileViewModel = hiltViewModel()) {
     Surface(modifier = Modifier.fillMaxSize()) {
         Column {
 
@@ -148,11 +151,5 @@ fun ProfileScreen() {
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewScreen() {
-    ProfileScreen()
 }
 

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 class PeopleRepoImpl(
     private  val dao: ContactDao
 ) : PeopleRepo {
-    override fun getContact(): Flow<List<People>> {
+    override fun getContacts(): Flow<List<People>> {
         return dao.getContacts()
     }
 

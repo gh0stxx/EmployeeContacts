@@ -8,6 +8,7 @@ import com.gh0stnet.employeecontacts.feature_contacts.domain.repository.PeopleRe
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.AddContact
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.DeleteContact
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.GetContact
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.GetContacts
 import dagger.Module
 import dagger.Provides
@@ -41,7 +42,8 @@ object AppModule {
         return ContactUseCases(
             getContacts = GetContacts(repo),
             deleteContact = DeleteContact(repo),
-            addContact = AddContact(repo)
+            addContact = AddContact(repo),
+            getContact = GetContact(repo)
         )
     }
 }

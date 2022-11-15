@@ -14,7 +14,7 @@ class GetContacts(
     operator fun invoke(
         peopleOrder: PeopleOrder = PeopleOrder.Name(OrderType.Ascending)
     ): Flow<List<People>> {
-        return  repo.getContact().map { contact_db ->
+        return  repo.getContacts().map { contact_db ->
             when(peopleOrder.orderType) {
                 is OrderType.Ascending -> contact_db.sortedBy { it.lastName.lowercase(Locale.getDefault()) }
                 is OrderType.Descending -> contact_db.sortedByDescending { it.lastName.lowercase(Locale.getDefault()) }

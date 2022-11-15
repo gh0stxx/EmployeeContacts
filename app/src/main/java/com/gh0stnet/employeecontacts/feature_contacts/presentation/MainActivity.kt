@@ -8,11 +8,14 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactScreen
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactViewModel
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.profile.ProfileScreen
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
 import com.gh0stnet.employeecontacts.ui.theme.EmployeeContactsTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -43,6 +46,22 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable(route = Screen.ContactScreen.route) {
                             ContactScreen(navController = navController)
+                        }
+                        composable(
+                            route = Screen.ProfileScreen.route +
+                                    "?contactId={contactId}",
+                            arguments = listOf(
+                                navArgument(
+                                    name = "contactId"
+                                ) {
+                                    type = NavType.IntType
+                                    defaultValue = -1
+                                }
+                        )
+                       ) {
+                            ProfileScreen(
+                                navController = navController
+                            )
                         }
                     }
                 }

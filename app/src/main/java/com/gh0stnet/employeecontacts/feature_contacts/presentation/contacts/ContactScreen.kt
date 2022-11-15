@@ -1,6 +1,7 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -24,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.components.ContactItem
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
@@ -60,7 +62,12 @@ fun ContactScreen(navController: NavController, viewModel: ContactViewModel = hi
 
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.contact) { contact ->
-                    ContactItem(person = contact, modifier = Modifier.fillMaxWidth())
+                    ContactItem(person = contact, modifier = Modifier.fillMaxWidth().clickable {
+                        navController.navigate(
+                            Screen.ProfileScreen.route +
+                                    "?contactId=${contact.id}"
+                        )
+                    })
                 }
             }
 

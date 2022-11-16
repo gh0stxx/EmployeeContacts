@@ -6,17 +6,15 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.AddContact
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.GetContact
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AddEditViewModel @Inject constructor(
-    private val getContact: GetContact,
-    private val addContact: AddContact,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
+    private val contactUseCases: ContactUseCases
 ) : ViewModel() {
 
     var _firstName = mutableStateOf(AddEditState())
@@ -42,7 +40,8 @@ class AddEditViewModel @Inject constructor(
         savedStateHandle.get<Int>("userId")?.let { userId ->
             if (userId != -1) {
                 viewModelScope.launch {
-                    getContact(userId)?.also {user ->
+
+                    contactUseCases.getContact(userId)?.also {user ->
                         currentUserId = user.id
                         _firstName.value = firstName.value.copy(
                         firstName = user.firstName
@@ -125,7 +124,7 @@ class AddEditViewModel @Inject constructor(
             }
             AddEditEvent.InsertContact -> {
                 viewModelScope.launch {
-                    addContact(
+                    contactUseCases.addContact(
                         People(
                             firstName = firstName.value.firstName,
                             lastName = lastName.value.lastName,

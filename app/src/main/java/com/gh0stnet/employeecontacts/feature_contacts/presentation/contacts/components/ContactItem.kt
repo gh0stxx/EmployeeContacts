@@ -56,7 +56,9 @@ fun ContactItem(
                     address = person.address,
                     country = person.country,
                     dept = person.dept,
-                    phoneNumber = person.phoneNumber
+                    phoneNumber = person.phoneNumber,
+                    email = person.email
+
                 )
             )
         )

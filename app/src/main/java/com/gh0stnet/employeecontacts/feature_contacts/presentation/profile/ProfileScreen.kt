@@ -2,6 +2,7 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,25 +31,27 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
+import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination
 @Composable
 fun ProfileScreen(
-viewModel: ProfileViewModel = hiltViewModel(), people: People) {
+    viewModel: ProfileViewModel = hiltViewModel(), people: People
+) {
 
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column {
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.surface) {
+        Column(modifier = Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White)) {
 
-            Surface(modifier = Modifier.height(380.dp)) {
+            Surface(
+                modifier = Modifier.height(380.dp),
+                color = if (isSystemInDarkTheme()) Charcoal else Color.White
+            ) {
 
                 val image = ImageBitmap.imageResource(R.drawable.redbg)
                 val brush = remember(image) {
@@ -86,13 +90,23 @@ viewModel: ProfileViewModel = hiltViewModel(), people: People) {
                     )
                 }
             }
+
             Spacer(modifier = Modifier.height(30.dp))
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = people.firstName, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                Text(text = "Human Resources", fontSize = 12.sp)
+                Text(
+                    text = "${people.firstName} ${people.lastName}",
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
+                )
+                Text(
+                    text = people.dept,
+                    fontSize = 14.sp,
+                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
+                )
 
             }
             Spacer(modifier = Modifier.size(20.dp))
@@ -106,14 +120,14 @@ viewModel: ProfileViewModel = hiltViewModel(), people: People) {
                     color = Color.Red,
                     modifier = Modifier.weight(3f),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 18.sp
                 )
                 Text(
                     text = "Email",
                     color = Color.Red,
                     modifier = Modifier.weight(2f),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 18.sp
                 )
 
 
@@ -123,8 +137,16 @@ viewModel: ProfileViewModel = hiltViewModel(), people: People) {
                     .fillMaxWidth()
                     .padding(75.dp, 0.dp, 50.dp, 0.dp)
             ) {
-                Text(text = "0411 255 444", color = Color.Black, modifier = Modifier.weight(3f))
-                Text(text = "Fred@ROI.com", color = Color.Black, modifier = Modifier.weight(2f))
+                Text(
+                    text = people.phoneNumber,
+                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                    modifier = Modifier.weight(3f)
+                )
+                Text(
+                    text = people.dept,
+                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                    modifier = Modifier.weight(2f)
+                )
 
 
             }
@@ -139,7 +161,7 @@ viewModel: ProfileViewModel = hiltViewModel(), people: People) {
                     color = Color.Red,
                     modifier = Modifier.weight(3f),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 18.sp
                 )
 
             }
@@ -149,8 +171,8 @@ viewModel: ProfileViewModel = hiltViewModel(), people: People) {
                     .padding(75.dp, 0.dp, 50.dp, 0.dp)
             ) {
                 Text(
-                    text = "123 Abc Rd, Sydney NSW 2000",
-                    color = Color.Black,
+                    text = "${people.address}, ${people.state} ${people.country}",
+                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                     modifier = Modifier.weight(3f)
                 )
             }

@@ -1,10 +1,10 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.DrawerValue
@@ -24,13 +24,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.components.ContactItem
-import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
+import com.gh0stnet.employeecontacts.ui.theme.Charcoal
+import com.gh0stnet.employeecontacts.ui.theme.Red
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import android.os.Parcelable
-import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
-import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -46,7 +43,7 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = Color.Red,
+            color = Red,
             darkIcons = false
         )
     }
@@ -54,12 +51,12 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopAppBar(title = { Text("TopAppBar") }, backgroundColor = Color.Red) },
+        topBar = { TopAppBar(title = { Text("TopAppBar") }, backgroundColor = Red) },
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {},
-                backgroundColor = Color.Red
+                backgroundColor = Red
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")
             }
@@ -67,31 +64,20 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
         drawerContent = { Text(text = "drawerContent") },
         content = {
 
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(if (isSystemInDarkTheme()) Charcoal else Color.White),
+            ) {
                 items(state.contact) { contact ->
-                    ContactItem(person = contact, modifier = Modifier.fillMaxWidth(),navigator = navigator, onClick =  { navigator.navigate(
-                        ProfileScreenDestination(
-                            People(
-                                firstName = contact.firstName,
-                                lastName = contact.lastName,
-                                state =  contact.state,
-                                id = contact.id,
-                                address = contact.address,
-                                country = contact.country,
-                                dept = contact.dept,
-                                phoneNumber = contact.phoneNumber
-                            )
-                        )
-                    ) })
+                    ContactItem(
+                        person = contact, modifier = Modifier.fillMaxWidth(),
+                        navigator = navigator
+                    )
                 }
             }
-
-
         }
-
-        // bottomBar = { BottomAppBar(backgroundColor = materialBlue700) { Text("BottomAppBar") } }
     )
-
 }
 
 

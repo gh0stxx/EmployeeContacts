@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,35 +30,37 @@ import androidx.compose.ui.unit.sp
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
+import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-
 
 @Composable
 fun ContactItem(
     person: People,
     modifier: Modifier,
-    onClick: () -> Unit,
     navigator: DestinationsNavigator
 
 ) {
-    Box(Modifier.clickable{ navigator.navigate(
-                        ProfileScreenDestination(
-                            People(
-                                firstName = person.firstName,
-                                lastName = person.lastName,
-                                state =  person.state,
-                                id = person.id,
-                                address = person.address,
-                                country = person.country,
-                                dept = person.dept,
-                                phoneNumber = person.phoneNumber
-                              )
-                        ) )}){
+    Box(Modifier.clickable {
+        navigator.navigate(
+            ProfileScreenDestination(
+                People(
+                    firstName = person.firstName,
+                    lastName = person.lastName,
+                    state = person.state,
+                    id = person.id,
+                    address = person.address,
+                    country = person.country,
+                    dept = person.dept,
+                    phoneNumber = person.phoneNumber
+                )
+            )
+        )
+    }) {
 
         Row(
             modifier = Modifier
                 //.matchParentSize()
-                .background(Color.White),
+                .background(if (isSystemInDarkTheme()) Charcoal else Color.White),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
@@ -81,12 +84,17 @@ fun ContactItem(
                         )
                 )
             }
-            Spacer(modifier = Modifier.size(10.dp))
+            Spacer(modifier = Modifier.size(15.dp))
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = person.firstName,fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                Text(text = person.dept, fontSize = 10.sp, color = Color.Red)
+                Text(
+                    text = "${person.firstName} ${person.lastName}",
+                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                )
+                Text(text = person.dept, fontSize = 12.sp, color = Color.Red)
             }
         }
     }

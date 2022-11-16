@@ -1,20 +1,26 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.hilt.navigation.compose.hiltViewModel
+
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AddEditViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val contactUseCases: ContactUseCases
+    private val contactUseCases: ContactUseCases,
+
 ) : ViewModel() {
 
     var _firstName = mutableStateOf(AddEditState())
@@ -33,6 +39,8 @@ class AddEditViewModel @Inject constructor(
     val country: State<AddEditState> = _country
     var _dept = mutableStateOf(AddEditState())
     val dept: State<AddEditState> = _dept
+
+
 
     private var currentUserId: Int? = null
 
@@ -140,5 +148,8 @@ class AddEditViewModel @Inject constructor(
                 }
             }
         }
+    }
+    sealed class UiEvent {
+        object SaveUser: UiEvent()
     }
 }

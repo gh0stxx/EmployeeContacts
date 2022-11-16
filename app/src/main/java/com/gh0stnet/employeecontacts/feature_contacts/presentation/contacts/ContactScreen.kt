@@ -31,6 +31,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.components.ContactItem
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.AddEditScreenDestination
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.util.Screen
 import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.gh0stnet.employeecontacts.ui.theme.Grey
 import com.gh0stnet.employeecontacts.ui.theme.LightGrey
@@ -63,7 +66,7 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {},
+                onClick = { navigator.navigate(AddEditScreenDestination)},
                 backgroundColor = Red
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")

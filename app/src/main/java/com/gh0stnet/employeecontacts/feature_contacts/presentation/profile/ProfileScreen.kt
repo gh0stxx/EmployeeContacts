@@ -18,6 +18,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,6 +38,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.ui.theme.Charcoal
+import com.gh0stnet.employeecontacts.ui.theme.LightOrange
+import com.gh0stnet.employeecontacts.ui.theme.Red
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination
@@ -44,6 +48,14 @@ import com.ramcosta.composedestinations.annotation.Destination
 fun ProfileScreen(
     viewModel: ProfileViewModel = hiltViewModel(), people: People
 ) {
+
+     val systemUiController = rememberSystemUiController()
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Red,
+            darkIcons = false
+        )
+    }
 
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.surface) {
         Column(modifier = Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White)) {
@@ -64,7 +76,7 @@ fun ProfileScreen(
                         )
                     )
                 }
-                Box(
+                Box (
                     Modifier
                         .fillMaxWidth()
                         .absoluteOffset(0.dp, (-100).dp)
@@ -97,8 +109,10 @@ fun ProfileScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
+                    letterSpacing = 5.sp,
                     text = "${people.firstName} ${people.lastName}",
-                    fontSize = 26.sp,
+                    fontSize = 30.sp,
+
                     fontWeight = FontWeight.Bold,
                     color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
                 )
@@ -117,14 +131,14 @@ fun ProfileScreen(
             ) {
                 Text(
                     text = "Phone",
-                    color = Color.Red,
+                    color = LightOrange,
                     modifier = Modifier.weight(3f),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
                 Text(
                     text = "Email",
-                    color = Color.Red,
+                    color = LightOrange,
                     modifier = Modifier.weight(2f),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
@@ -158,7 +172,7 @@ fun ProfileScreen(
             ) {
                 Text(
                     text = "Address",
-                    color = Color.Red,
+                    color = LightOrange,
                     modifier = Modifier.weight(3f),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
@@ -176,6 +190,11 @@ fun ProfileScreen(
                     modifier = Modifier.weight(3f)
                 )
             }
+            Image(painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo",
+                modifier = Modifier.size(150.dp)
+                    .padding(75.dp,0.dp,0.dp,0.dp)
+            )
         }
     }
 }

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +32,7 @@ import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
 import com.gh0stnet.employeecontacts.ui.theme.Charcoal
+import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
@@ -40,7 +42,10 @@ fun ContactItem(
     navigator: DestinationsNavigator
 
 ) {
-    Box(Modifier.clickable {
+    Box(
+        Modifier
+            .padding(5.dp)
+            .clickable {
         navigator.navigate(
             ProfileScreenDestination(
                 People(
@@ -64,9 +69,9 @@ fun ContactItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                shadowElevation = 7.dp,
+                shadowElevation = 10.dp,
                 shape = RoundedCornerShape(30, 90, 90, 0),
-                modifier = Modifier.padding(10.dp)
+                modifier = Modifier.padding(0.dp,15.dp, 0.dp, 15.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.profile_pic1),
@@ -92,10 +97,12 @@ fun ContactItem(
                     text = "${person.firstName} ${person.lastName}",
                     color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
+                    fontSize = 20.sp,
+                    letterSpacing = 2.sp
                 )
-                Text(text = person.dept, fontSize = 12.sp, color = Color.Red)
+                Text(text = person.dept, fontSize = 12.sp, color = LightOrange)
             }
+
         }
     }
 }

@@ -23,6 +23,7 @@ class ContactViewModel @Inject constructor(
     private var recentlyDeletedContacts: People? = null
 
     private var getContactJobs: Job? = null
+
     init {
         getContacts(PeopleOrder.Name(OrderType.Ascending))
     }

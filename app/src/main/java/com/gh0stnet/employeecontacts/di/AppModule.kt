@@ -10,6 +10,15 @@ import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUse
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.DeleteContact
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.GetContact
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.GetContacts
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateAddress
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateCountry
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateDept
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateEmail
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateFirstName
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateLastName
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidatePhone
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateState
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidationResult
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,7 +52,16 @@ object AppModule {
             getContacts = GetContacts(repo),
             deleteContact = DeleteContact(repo),
             addContact = AddContact(repo),
-            getContact = GetContact(repo)
+            getContact = GetContact(repo),
+            validateFirstName = ValidateFirstName(),
+            validateLastName = ValidateLastName(),
+            validatePhone = ValidatePhone(),
+            validateEmail = ValidateEmail(),
+            validateAddress = ValidateAddress(),
+            validateState = ValidateState(),
+            validateCountry = ValidateCountry(),
+            validateDept = ValidateDept(),
+            validationResult = ValidationResult(success = true)
         )
     }
 }

@@ -9,6 +9,7 @@ import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 data class BaselineHeightModifier(
     val heightFromBaseline: Dp
@@ -24,7 +25,7 @@ data class BaselineHeightModifier(
         val height  = heightFromBaseline.roundToPx() + lastBaseline - firstBaseline
         return layout(constraints.maxWidth, height) {
             val  topY = heightFromBaseline.roundToPx() - firstBaseline
-            textPlaceable.place(0, topY)
+            textPlaceable.place(0, topY+2)
         }
     }
 }

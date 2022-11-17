@@ -67,7 +67,8 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navigator.navigate(AddEditScreenDestination)},
-                backgroundColor = Red
+                backgroundColor = Red,
+                contentColor = Color.White
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")
             }
@@ -82,6 +83,7 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
                     .background(if (isSystemInDarkTheme()) Charcoal else Color.White)
                     .shadow(elevation = 1.dp)
                     .padding(15.dp,0.dp, 15.dp , 0.dp)
+
             ) {
                 items(state.contact) { contact ->
                     ContactItem(

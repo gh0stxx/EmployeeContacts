@@ -71,7 +71,7 @@ fun ContactItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
-                shadowElevation = 10.dp,
+                shadowElevation = 5.dp,
                 shape = RoundedCornerShape(30, 90, 90, 0),
                 modifier = Modifier.padding(0.dp,15.dp, 0.dp, 15.dp)
             ) {

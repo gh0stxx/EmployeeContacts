@@ -3,7 +3,6 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.profile
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

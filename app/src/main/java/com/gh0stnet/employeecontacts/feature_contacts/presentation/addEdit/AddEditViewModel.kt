@@ -1,22 +1,12 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateAddress
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateCountry
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateDept
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateEmail
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateFirstName
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateLastName
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidatePhone
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -25,7 +15,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
     private val contactUseCases: ContactUseCases,
 ) : ViewModel() {
 

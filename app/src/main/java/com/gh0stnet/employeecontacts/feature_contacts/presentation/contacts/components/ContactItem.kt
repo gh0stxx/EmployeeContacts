@@ -37,7 +37,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun ContactItem(
     person: People,
-    modifier: Modifier,
     navigator: DestinationsNavigator
 
 ) {

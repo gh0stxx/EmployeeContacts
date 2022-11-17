@@ -97,9 +97,3 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
         }
     )
 }
-
-
-
-
-
-

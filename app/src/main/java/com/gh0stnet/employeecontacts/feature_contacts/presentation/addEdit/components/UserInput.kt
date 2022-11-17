@@ -24,10 +24,7 @@ fun UserInput(
     hint: String,
     modifier: Modifier = Modifier,
     hasError: String?,
-
-
     onTextChange: (String) -> Unit
-
 
     ) {
     Column(
@@ -35,8 +32,6 @@ fun UserInput(
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
-
-
 
              Text(
                  text = hint,

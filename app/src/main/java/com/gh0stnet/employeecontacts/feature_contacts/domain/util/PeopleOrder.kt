@@ -9,3 +9,4 @@ sealed class PeopleOrder(val orderType: OrderType) {
         }
     }
 }
+

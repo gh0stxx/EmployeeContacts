@@ -27,10 +27,7 @@ import javax.inject.Inject
 class AddEditViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val contactUseCases: ContactUseCases,
-
-
-
-    ) : ViewModel() {
+) : ViewModel() {
 
     var state by mutableStateOf(AddEditState())
 
@@ -69,9 +66,7 @@ class AddEditViewModel @Inject constructor(
         }
     }
 
-
     private fun submit() {
-
 
         val firstNameResult = contactUseCases.validateFirstName.execute(state.firstName)
         val lastNameResult = contactUseCases.validateLastName.execute(state.lastName)

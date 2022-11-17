@@ -17,7 +17,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.gh0stnet.employeecontacts.ui.theme.Grey
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
-import com.gh0stnet.employeecontacts.ui.theme.Red
 
 @Composable
 fun UserInput(
@@ -45,14 +44,9 @@ fun UserInput(
                 .padding(top = 10.dp)
                 .width(300.dp),
             textStyle = TextStyle(
-                color =   if (isSystemInDarkTheme()) Color.LightGray else Color.Black
-            )
-
-                    ,
-
-
+                color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
+            ),
             keyboardOptions = keyboard,
-
             label = {
                 Text(
                     hint, style = TextStyle(
@@ -62,7 +56,8 @@ fun UserInput(
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = LightOrange,
-                unfocusedBorderColor = Grey),
+                unfocusedBorderColor = Grey
+            ),
 
             )
 

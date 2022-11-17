@@ -43,7 +43,6 @@ import com.gh0stnet.employeecontacts.ui.theme.LightGrey
 import com.gh0stnet.employeecontacts.ui.theme.Red
 import com.ramcosta.composedestinations.annotation.Destination
 
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Destination
 @Composable

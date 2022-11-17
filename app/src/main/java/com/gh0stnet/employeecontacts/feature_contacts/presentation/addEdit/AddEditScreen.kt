@@ -18,6 +18,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
@@ -35,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -45,6 +47,10 @@ import com.gh0stnet.employeecontacts.ui.theme.Red
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.delay
+
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Destination
@@ -63,8 +69,9 @@ fun AddEditScreen(
     val deptState = viewModel.state.dept
     val state = viewModel.state
     val context = LocalContext.current
-
+    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     val systemUiController = rememberSystemUiController()
+
     SideEffect {
         systemUiController.setStatusBarColor(
             color = Red,
@@ -86,9 +93,6 @@ fun AddEditScreen(
             }
         }
     }
-
-    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
-
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { TopAppBar(
@@ -178,53 +182,51 @@ fun EditContent(
         Spacer(modifier = Modifier.height(44.dp))
         UserInput(
             text = firstName,
-
             hint = "First Name",
             onTextChange = { onEvent(AddEditEvent.EnteredFirstName(it)) },
-            hasError = fnState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text)
+            hasError = fnState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
         UserInput(
             text = lastName,
             hint = "Last Name",
             onTextChange = { onEvent(AddEditEvent.EnteredLastName(it)) },
-            hasError = lnState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text)
+            hasError = lnState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
-
         UserInput(
             text = phone,
             hint = "Phone Number",
             onTextChange = { onEvent(AddEditEvent.EnteredPhone(it)) },
-            hasError = pState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Number)
+            hasError = pState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Number),
         )
         UserInput(
             text = email,
             hint = "Email Address",
             onTextChange = { onEvent(AddEditEvent.EnteredEmail(it)) },
-            hasError = eState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Email)
+            hasError = eState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Email),
         )
         UserInput(
             text = address,
             hint = "Address",
             onTextChange = { onEvent(AddEditEvent.EnteredAddress(it)) },
-            hasError = aState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text)
+            hasError = aState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
         UserInput(
             text = state,
             hint = "State",
             onTextChange = { onEvent(AddEditEvent.EnteredState(it)) },
-            hasError = sState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text)
+            hasError = sState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
         UserInput(
             text = country,
             hint = "Country",
             onTextChange = { onEvent(AddEditEvent.EnteredCountry(it)) },
-            hasError = cState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text)
+            hasError = cState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
         UserInput(
             text = dept,
             hint = "Department",
             onTextChange = { onEvent(AddEditEvent.EnteredDept(it)) },
-            hasError = dState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text)
+            hasError = dState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
     }
 }

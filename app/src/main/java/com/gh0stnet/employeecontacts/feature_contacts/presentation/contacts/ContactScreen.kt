@@ -14,11 +14,13 @@ import androidx.compose.material.DrawerValue
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -62,7 +64,12 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopAppBar(title = { Text("EOI Connect", color = LightGrey) }, backgroundColor = Red) },
+        topBar = { TopAppBar(
+            title = { Text("EOI Connect")},
+            backgroundColor = Red,
+        contentColor = Color.White
+        )},
+
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
@@ -73,9 +80,7 @@ fun ContactScreen(navigator: DestinationsNavigator, viewModel: ContactViewModel 
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")
             }
         },
-        drawerContent = { Text(text = "drawerContent") },
         content = {
-
             LazyColumn(
 
                 modifier = Modifier

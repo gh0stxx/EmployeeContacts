@@ -48,7 +48,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.Navigator
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.AddEditScreenDestination
@@ -67,7 +66,7 @@ fun ProfileScreen(
     navigator: DestinationsNavigator
 ) {
 
-     val systemUiController = rememberSystemUiController()
+    val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setStatusBarColor(
             color = Red,
@@ -78,173 +77,169 @@ fun ProfileScreen(
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopAppBar(
-            title = { Text("Profile")},
-               navigationIcon = {
-            IconButton(onClick = {
-                navigator.navigateUp()
-            }) {
-                Icon(Icons.Rounded.ArrowBack, "back arrow")
-            }
-              },
-            backgroundColor = Red,
-        contentColor = Color.White
-        )},
-
-
-
-
+        topBar = {
+            TopAppBar(
+                title = { Text("Profile") },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navigator.navigateUp()
+                    }) {
+                        Icon(Icons.Rounded.ArrowBack, "back arrow")
+                    }
+                },
+                backgroundColor = Red,
+                contentColor = Color.White
+            )
+        },
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigator.navigate(AddEditScreenDestination)},
+                onClick = { navigator.navigate(AddEditScreenDestination) },
                 backgroundColor = Red,
                 contentColor = Color.White
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")
             }
         },
-        drawerContent = { Text(text = "drawerContent") },
-        content = {    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.surface) {
-            Column(modifier = Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White)) {
+        content = {
+            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.surface) {
+                Column(modifier = Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White)) {
 
-                Surface(
-                    modifier = Modifier.height(320.dp),
-                    color = if (isSystemInDarkTheme()) Charcoal else Color.White
-                ) {
+                    Surface(
+                        modifier = Modifier.height(320.dp),
+                        color = if (isSystemInDarkTheme()) Charcoal else Color.White
+                    ) {
 
-                    val image = ImageBitmap.imageResource(R.drawable.redbg)
-                    val brush = remember(image) {
-                        ShaderBrush(
-                            ImageShader(
-                                image,
+                        val image = ImageBitmap.imageResource(R.drawable.redbg)
+                        val brush = remember(image) {
+                            ShaderBrush(
+                                ImageShader(
+                                    image,
 
-                                TileMode.Repeated,
-                                TileMode.Repeated,
+                                    TileMode.Repeated,
+                                    TileMode.Repeated,
+                                )
                             )
-                        )
+                        }
+                        Box(
+                            Modifier
+                                .fillMaxWidth()
+                                .absoluteOffset(0.dp, (-100).dp)
+                                .background(brush)
+
+                        ) {
+
+                        }
+                        Box(
+                            Modifier
+                                .fillMaxSize()
+
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.profile_pic1),
+                                contentDescription = "Profile pic",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(260.dp)
+                                    .clip(CircleShape)
+                                    .align(Alignment.BottomCenter)
+                            )
+                        }
                     }
-                    Box (
-                        Modifier
+
+                    Spacer(modifier = Modifier.height(30.dp))
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            letterSpacing = 5.sp,
+                            text = "${people.firstName} ${people.lastName}",
+                            fontSize = 30.sp,
+
+                            fontWeight = FontWeight.Bold,
+                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
+                        )
+                        Text(
+                            text = people.dept,
+                            fontSize = 14.sp,
+                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
+                        )
+
+                    }
+                    Spacer(modifier = Modifier.size(20.dp))
+                    Row(
+                        modifier = Modifier
                             .fillMaxWidth()
-                            .absoluteOffset(0.dp, (-100).dp)
-                            .background(brush)
-
+                            .padding(75.dp, 20.dp, 50.dp, 10.dp)
                     ) {
-
-                    }
-                    Box(
-                        Modifier
-                            .fillMaxSize()
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.profile_pic1),
-                            contentDescription = "Profile pic",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .size(260.dp)
-                                .clip(CircleShape)
-                                .align(Alignment.BottomCenter)
+                        Text(
+                            text = "Phone",
+                            color = LightOrange,
+                            modifier = Modifier.weight(3f),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp
+                        )
+                        Text(
+                            text = "Email",
+                            color = LightOrange,
+                            modifier = Modifier.weight(2f),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp
                         )
                     }
-                }
-
-                Spacer(modifier = Modifier.height(30.dp))
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        letterSpacing = 5.sp,
-                        text = "${people.firstName} ${people.lastName}",
-                        fontSize = 30.sp,
-
-                        fontWeight = FontWeight.Bold,
-                        color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
-                    )
-                    Text(
-                        text = people.dept,
-                        fontSize = 14.sp,
-                        color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
-                    )
-
-                }
-                Spacer(modifier = Modifier.size(20.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(75.dp, 20.dp, 50.dp, 10.dp)
-                ) {
-                    Text(
-                        text = "Phone",
-                        color = LightOrange,
-                        modifier = Modifier.weight(3f),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
-                    )
-                    Text(
-                        text = "Email",
-                        color = LightOrange,
-                        modifier = Modifier.weight(2f),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
-                    )
-
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(75.dp, 0.dp, 50.dp, 0.dp)
-                ) {
-                    Text(
-                        text = people.phoneNumber,
-                        color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
-                        modifier = Modifier.weight(3f)
-                    )
-                    Text(
-                        text = people.dept,
-                        color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
-                        modifier = Modifier.weight(2f)
-                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(75.dp, 0.dp, 50.dp, 0.dp)
+                    ) {
+                        Text(
+                            text = people.phoneNumber,
+                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                            modifier = Modifier.weight(3f)
+                        )
+                        Text(
+                            text = people.dept,
+                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                            modifier = Modifier.weight(2f)
+                        )
 
 
-                }
-                Spacer(modifier = Modifier.size(20.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(75.dp, 20.dp, 50.dp, 10.dp)
-                ) {
-                    Text(
-                        text = "Address",
-                        color = LightOrange,
-                        modifier = Modifier.weight(3f),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
-                    )
-
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(75.dp, 0.dp, 50.dp, 0.dp)
-                ) {
-                    Text(
-                        text = "${people.address}, ${people.state} ${people.country}",
-                        color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
-                        modifier = Modifier.weight(3f)
+                    }
+                    Spacer(modifier = Modifier.size(20.dp))
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(75.dp, 20.dp, 50.dp, 10.dp)
+                    ) {
+                        Text(
+                            text = "Address",
+                            color = LightOrange,
+                            modifier = Modifier.weight(3f),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp
+                        )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(75.dp, 0.dp, 50.dp, 0.dp)
+                    ) {
+                        Text(
+                            text = "${people.address}, ${people.state} ${people.country}",
+                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                            modifier = Modifier.weight(3f)
+                        )
+                    }
+                    Image(
+                        painter = painterResource(id = R.drawable.logo),
+                        contentDescription = "Logo",
+                        modifier = Modifier
+                            .size(150.dp)
+                            .padding(75.dp, 0.dp, 0.dp, 0.dp)
                     )
                 }
-                Image(painter = painterResource(id = R.drawable.logo),
-                    contentDescription = "Logo",
-                    modifier = Modifier.size(150.dp)
-                        .padding(75.dp,0.dp,0.dp,0.dp)
-                )
             }
         }
-
-        })
-
-
+    )
 }

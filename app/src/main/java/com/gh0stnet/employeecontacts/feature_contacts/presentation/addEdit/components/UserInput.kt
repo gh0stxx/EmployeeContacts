@@ -1,14 +1,19 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components
 
+import android.graphics.drawable.VectorDrawable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +30,8 @@ fun UserInput(
     modifier: Modifier = Modifier,
     hasError: String?,
     keyboard: KeyboardOptions,
-    onTextChange: (String) -> Unit
+    onTextChange: (String) -> Unit,
+
 
 ) {
     Column(
@@ -35,8 +41,10 @@ fun UserInput(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-
         OutlinedTextField(
+            leadingIcon = {
+
+            },
             value = text,
 
             onValueChange = onTextChange,
@@ -58,9 +66,7 @@ fun UserInput(
                 focusedBorderColor = LightOrange,
                 unfocusedBorderColor = Grey
             ),
-
-            )
-
+        )
         if (hasError != null) {
             Text(text = hasError, color = Color.Red)
         }

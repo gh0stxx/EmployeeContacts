@@ -12,5 +12,4 @@ class ValidateState {
                 success = true
                 )
     }
-
 }

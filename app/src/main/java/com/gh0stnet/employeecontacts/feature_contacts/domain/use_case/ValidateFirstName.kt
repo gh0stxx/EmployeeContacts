@@ -13,5 +13,4 @@ class ValidateFirstName {
                 success = true
                 )
     }
-
 }

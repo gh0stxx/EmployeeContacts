@@ -144,7 +144,6 @@ fun ProfileScreen(
                     fontSize = 18.sp
                 )
 
-
             }
             Row(
                 modifier = Modifier

@@ -18,10 +18,6 @@ class MainActivity : ComponentActivity() {
             EmployeeContactsTheme {
                 DestinationsNavHost(navGraph = NavGraphs.root)
             }
-
-
         }
-
-
     }
 }

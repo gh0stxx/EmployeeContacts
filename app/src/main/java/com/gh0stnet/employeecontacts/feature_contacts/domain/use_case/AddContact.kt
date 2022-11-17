@@ -33,6 +33,4 @@ class AddContact(
         }
         repo.insertContact(person)
     }
-
-
 }

@@ -12,7 +12,4 @@ interface PeopleRepo {
     suspend fun insertContact(person: People)
 
     suspend fun deleteContact(person: People)
-
-
-
 }

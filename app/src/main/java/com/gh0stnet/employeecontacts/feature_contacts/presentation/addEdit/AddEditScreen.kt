@@ -2,8 +2,12 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit
 
 import android.annotation.SuppressLint
 import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -36,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.UserInput
+import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.gh0stnet.employeecontacts.ui.theme.Red
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
@@ -47,7 +52,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun AddEditScreen(
         navigator: DestinationsNavigator,
-    viewModel: AddEditViewModel = hiltViewModel(),
+        viewModel: AddEditViewModel = hiltViewModel(),
     ) {
     val firstNameState = viewModel.state.firstName
     val lastNameState = viewModel.state.lastName
@@ -58,7 +63,7 @@ fun AddEditScreen(
     val countryState = viewModel.state.country
     val deptState = viewModel.state.dept
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+    val scaffoldState = rememberScaffoldState()
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
@@ -72,17 +77,19 @@ fun AddEditScreen(
         viewModel.validationEvents.collect { event ->
             when (event) {
                 is AddEditViewModel.ValidationEvent.Success -> {
-                    navigator.navigateUp()
                     Toast.makeText(
                         context,
                         "Registration successful",
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_LONG,
+
                     ).show()
+                    navigator.navigateUp()
                 }
             }
         }
     }
     Scaffold(
+         Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White),
         scaffoldState = scaffoldState,
         topBar = { TopAppBar(
             title = { Text("Add Contact")},
@@ -99,7 +106,7 @@ fun AddEditScreen(
 
         content = {
 
-            Column(Modifier.verticalScroll(rememberScrollState())) {
+            Column(Modifier.verticalScroll(rememberScrollState()).background(if (isSystemInDarkTheme()) Charcoal else Color.White).fillMaxSize()) {
                 Surface {
                     EditContent(
                         firstName = firstNameState,
@@ -115,10 +122,10 @@ fun AddEditScreen(
                         },
                     )
                 }
-                Surface(modifier = Modifier.fillMaxWidth()) {
+                Surface(modifier = Modifier.fillMaxWidth().background(if (isSystemInDarkTheme()) Charcoal else Color.White),) {
 
                     Surface(
-                        modifier = Modifier.padding(80.dp, 0.dp, 80.dp, 0.dp)
+                        modifier = Modifier.padding(80.dp, 0.dp, 80.dp, 0.dp).background(if (isSystemInDarkTheme()) Charcoal else Color.White),
                     ) {
                         Button(
                             onClick = {
@@ -164,8 +171,7 @@ fun EditContent(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-
+            .fillMaxWidth().fillMaxHeight()
             .padding(20.dp, 0.dp, 20.dp, 0.dp)
     ) {
         Spacer(modifier = Modifier.height(44.dp))

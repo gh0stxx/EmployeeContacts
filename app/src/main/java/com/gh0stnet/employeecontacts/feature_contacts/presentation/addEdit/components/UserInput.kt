@@ -61,6 +61,7 @@ fun UserInput(
                 focusedBorderColor = LightOrange,
                 unfocusedBorderColor = Grey
             ),
+            singleLine = true
         )
         if (hasError != null) {
             Text(text = hasError, color = Color.Red)

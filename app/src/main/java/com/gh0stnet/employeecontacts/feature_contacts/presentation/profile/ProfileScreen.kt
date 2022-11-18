@@ -2,6 +2,7 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.profile
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -15,7 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.DrawerValue
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -28,7 +29,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.rounded.ArrowBack
-import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -73,8 +73,9 @@ fun ProfileScreen(
         )
     }
 
-    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+    val scaffoldState = rememberScaffoldState()
     Scaffold(
+         Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White),
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
@@ -102,8 +103,11 @@ fun ProfileScreen(
         },
         content = {
             Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.surface) {
-                Column(modifier = Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White)) {
-
+                Column(modifier = Modifier
+                    .verticalScroll(
+                        enabled = true,
+                        state = ScrollState(initial = DEFAULT_BUFFER_SIZE))
+                    .background(if (isSystemInDarkTheme()) Charcoal else Color.White)) {
                     Surface(
                         modifier = Modifier.height(320.dp),
                         color = if (isSystemInDarkTheme()) Charcoal else Color.White
@@ -114,7 +118,6 @@ fun ProfileScreen(
                             ShaderBrush(
                                 ImageShader(
                                     image,
-
                                     TileMode.Repeated,
                                     TileMode.Repeated,
                                 )
@@ -125,9 +128,7 @@ fun ProfileScreen(
                                 .fillMaxWidth()
                                 .absoluteOffset(0.dp, (-100).dp)
                                 .background(brush)
-
                         ) {
-
                         }
                         Box(
                             Modifier
@@ -202,8 +203,6 @@ fun ProfileScreen(
                             color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                             modifier = Modifier.weight(2f)
                         )
-
-
                     }
                     Spacer(modifier = Modifier.size(20.dp))
                     Row(

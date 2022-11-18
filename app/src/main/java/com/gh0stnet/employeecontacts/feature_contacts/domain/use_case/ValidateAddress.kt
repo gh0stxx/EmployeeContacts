@@ -8,6 +8,7 @@ class ValidateAddress {
                 errorMessage = "Address cannot be empty"
             )
     }
+
         return ValidationResult(
                 success = true
                 )

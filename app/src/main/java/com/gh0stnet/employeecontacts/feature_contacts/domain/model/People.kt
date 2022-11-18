@@ -14,8 +14,8 @@ import java.lang.Exception
 @Parcelize
 data class People(
     @PrimaryKey(autoGenerate = true) val id: Int?,
-    val firstName: String,
-    val lastName: String,
+    var firstName: String,
+    var lastName: String,
     val email: String,
     val phoneNumber: String,
     val address: String,

@@ -56,13 +56,14 @@ fun ContactScreen(navigator: DestinationsNavigator,
         )
     }
 
-    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+    val scaffoldState = rememberScaffoldState()
     Scaffold(
+        Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White),
         scaffoldState = scaffoldState,
         topBar = { TopAppBar(
             title = { Text("EOI Connect")},
             backgroundColor = Red,
-        contentColor = Color.White
+        contentColor = Color.White,
         )},
 
         floatingActionButtonPosition = FabPosition.End,
@@ -77,13 +78,9 @@ fun ContactScreen(navigator: DestinationsNavigator,
         },
         content = {
             LazyColumn(
-
                 modifier = Modifier
                     .fillMaxSize()
                     .background(if (isSystemInDarkTheme()) Charcoal else Color.White)
-                    .shadow(elevation = 1.dp)
-                    .padding(15.dp,0.dp, 15.dp , 0.dp)
-
             ) {
                 items(state.contact) { contact ->
                     ContactItem(

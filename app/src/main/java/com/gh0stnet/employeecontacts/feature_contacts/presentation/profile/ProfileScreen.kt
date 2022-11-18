@@ -241,7 +241,7 @@ fun ProfileScreen(
 
                     }
                 }
-                Spacer(modifier = Modifier.size(20.dp))
+                Spacer(modifier = Modifier.size(2.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -255,16 +255,27 @@ fun ProfileScreen(
                         fontSize = 18.sp
                     )
                 }
-                Row(
+                Column(
+
                     modifier = Modifier
                         .fillMaxWidth()
+                        .height(40.dp)
                         .padding(75.dp, 0.dp, 50.dp, 0.dp)
+
                 ) {
-                    Text(
-                        text = "${people.address}, ${people.state} ${people.country}",
-                        color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
-                        modifier = Modifier.weight(3f)
-                    )
+
+                        Text(
+                            text = people.address,
+                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                            modifier = Modifier.weight(3f)
+                        )
+                        Text(
+                            text = "${people.city}, ${people.state} ${people.postcode}",
+                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                            modifier = Modifier.weight(3f)
+                        )
+
+
                 }
                 Image(
                     painter = painterResource(id = R.drawable.logo),

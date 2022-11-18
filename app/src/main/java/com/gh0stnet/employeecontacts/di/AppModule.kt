@@ -11,7 +11,8 @@ import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.DeleteCont
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.GetContact
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.GetContacts
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateAddress
-import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateCountry
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateCity
+import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidatePostcode
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateDept
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateEmail
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ValidateFirstName
@@ -58,8 +59,9 @@ object AppModule {
             validatePhone = ValidatePhone(),
             validateEmail = ValidateEmail(),
             validateAddress = ValidateAddress(),
+            validateCity = ValidateCity(),
             validateState = ValidateState(),
-            validateCountry = ValidateCountry(),
+            validatePostcode = ValidatePostcode(),
             validateDept = ValidateDept(),
             validationResult = ValidationResult(success = true)
         )

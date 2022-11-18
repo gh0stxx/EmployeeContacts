@@ -10,8 +10,9 @@ data class ContactUseCases (
     val validatePhone: ValidatePhone,
     val validateEmail: ValidateEmail,
     val validateAddress: ValidateAddress,
+    val validateCity: ValidateCity,
     val validateState: ValidateState,
-    val validateCountry: ValidateCountry,
+    val validatePostcode: ValidatePostcode,
     val validateDept: ValidateDept,
     val validationResult: ValidationResult
 )

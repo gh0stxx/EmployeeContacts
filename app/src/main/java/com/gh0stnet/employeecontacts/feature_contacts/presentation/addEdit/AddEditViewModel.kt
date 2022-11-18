@@ -40,11 +40,15 @@ class AddEditViewModel @Inject constructor(
             is AddEditEvent.EnteredAddress -> {
                 state = state.copy(address = event.value)
             }
+            is AddEditEvent.EnteredCity -> {
+                state = state.copy(city = event.value)
+            }
+
             is AddEditEvent.EnteredState -> {
                 state = state.copy(sstate = event.value)
             }
-            is AddEditEvent.EnteredCountry -> {
-                state = state.copy(country = event.value)
+            is AddEditEvent.EnteredPostcode -> {
+                state = state.copy(postcode = event.value)
             }
             is AddEditEvent.EnteredDept -> {
                 state = state.copy(dept = event.value)
@@ -62,8 +66,9 @@ class AddEditViewModel @Inject constructor(
         val emailResult = contactUseCases.validateEmail.execute(state.email)
         val phoneResult = contactUseCases.validatePhone.execute(state.phone)
         val addressResult = contactUseCases.validateAddress.execute(state.address)
+        val cityResult = contactUseCases.validateCity.execute(state.city)
         val stateResult = contactUseCases.validateState.execute(state.sstate)
-        val countryResult = contactUseCases.validateCountry.execute(state.country)
+        val postcodeResult = contactUseCases.validatePostcode.execute(state.postcode)
         val deptResult = contactUseCases.validateDept.execute(state.dept)
 
         val hasError = listOf(
@@ -72,8 +77,9 @@ class AddEditViewModel @Inject constructor(
             emailResult,
             phoneResult,
             addressResult,
+            cityResult,
             stateResult,
-            countryResult,
+            postcodeResult,
             deptResult
         ).any {
             !it.success
@@ -86,8 +92,9 @@ class AddEditViewModel @Inject constructor(
                 phoneError = phoneResult.errorMessage,
                 emailError = emailResult.errorMessage,
                 addressError = addressResult.errorMessage,
+                cityError = cityResult.errorMessage,
                 stateError = stateResult.errorMessage,
-                countryError = countryResult.errorMessage,
+                postcodeError = postcodeResult.errorMessage,
                 deptError = deptResult.errorMessage
             )
             return
@@ -101,8 +108,9 @@ class AddEditViewModel @Inject constructor(
                     phoneNumber = state.phone,
                     email = state.email,
                     address = state.address,
+                    city = state.city,
                     state = state.sstate,
-                    country = state.country,
+                    postcode = state.postcode,
                     dept = state.dept,
                     id = null
                 )

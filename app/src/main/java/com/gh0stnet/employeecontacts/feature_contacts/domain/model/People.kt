@@ -19,9 +19,11 @@ data class People(
     val email: String,
     val phoneNumber: String,
     val address: String,
+    val city: String,
     val state: String,
-    val country: String,
+    val postcode: String,
     val dept: String
+
 ) : Parcelable
 
 class InvalidContactException(message: String): Exception(message)

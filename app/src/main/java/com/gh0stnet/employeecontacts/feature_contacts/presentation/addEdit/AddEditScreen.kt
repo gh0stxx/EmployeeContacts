@@ -15,7 +15,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.DrawerValue
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -23,7 +22,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
-import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -58,9 +56,10 @@ fun AddEditScreen(
     val lastNameState = viewModel.state.lastName
     val phoneState = viewModel.state.phone
     val addressState = viewModel.state.address
+    val cityState = viewModel.state.city
     val emailState = viewModel.state.email
     val stateState = viewModel.state.sstate
-    val countryState = viewModel.state.country
+    val postcodeState = viewModel.state.postcode
     val deptState = viewModel.state.dept
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
@@ -112,10 +111,11 @@ fun AddEditScreen(
                         firstName = firstNameState,
                         lastName = lastNameState,
                         address = addressState,
+                        city = cityState,
                         phone = phoneState,
                         email = emailState,
                         state = stateState,
-                        country = countryState,
+                        postcode = postcodeState,
                         dept = deptState,
                         onEvent = {
                             viewModel.onEvent(it)
@@ -152,10 +152,11 @@ fun EditContent(
     firstName: String,
     lastName: String,
     address: String,
+    city: String,
     phone: String,
     email: String,
     state: String,
-    country: String,
+    postcode: String,
     dept: String,
     onEvent: (AddEditEvent) -> Unit,
 ) {
@@ -165,8 +166,9 @@ fun EditContent(
     val pState = viewModel.state.phoneError
     val eState = viewModel.state.emailError
     val aState = viewModel.state.addressError
+    val ciState = viewModel.state.cityError
     val sState = viewModel.state.stateError
-    val cState = viewModel.state.countryError
+    val cState = viewModel.state.postcodeError
     val dState = viewModel.state.deptError
 
     Column(
@@ -206,15 +208,21 @@ fun EditContent(
             hasError = aState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
         UserInput(
+            text = city,
+            hint = "City/Town",
+            onTextChange = { onEvent(AddEditEvent.EnteredCity(it)) },
+            hasError = ciState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
+        )
+        UserInput(
             text = state,
             hint = "State",
             onTextChange = { onEvent(AddEditEvent.EnteredState(it)) },
             hasError = sState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
         UserInput(
-            text = country,
-            hint = "Country",
-            onTextChange = { onEvent(AddEditEvent.EnteredCountry(it)) },
+            text = postcode,
+            hint = "Postcode",
+            onTextChange = { onEvent(AddEditEvent.EnteredPostcode(it)) },
             hasError = cState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
         )
         UserInput(

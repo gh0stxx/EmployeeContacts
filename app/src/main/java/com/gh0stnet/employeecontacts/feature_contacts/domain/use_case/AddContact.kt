@@ -1,7 +1,5 @@
 package com.gh0stnet.employeecontacts.feature_contacts.domain.use_case
 
-import androidx.compose.ui.text.capitalize
-import androidx.compose.ui.text.toUpperCase
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.InvalidContactException
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.domain.repository.PeopleRepo
@@ -39,7 +37,7 @@ class AddContact(
         if (person.state.isBlank()) {
             throw InvalidContactException("State cannot be empty")
         }
-        if (person.country.isBlank()) {
+        if (person.postcode.isBlank()) {
             throw InvalidContactException("Country cannot be empty")
         }
         if (person.dept.isBlank()) {

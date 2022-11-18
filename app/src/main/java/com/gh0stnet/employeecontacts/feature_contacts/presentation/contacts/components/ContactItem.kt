@@ -53,7 +53,8 @@ fun ContactItem(
                     state = person.state,
                     id = person.id,
                     address = person.address,
-                    country = person.country,
+                    city = person.city,
+                    postcode = person.postcode,
                     dept = person.dept,
                     phoneNumber = person.phoneNumber,
                     email = person.email

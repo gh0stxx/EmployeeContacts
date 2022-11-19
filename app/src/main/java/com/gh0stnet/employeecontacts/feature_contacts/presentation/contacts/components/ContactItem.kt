@@ -45,7 +45,7 @@ fun ContactItem(
 
     val trebuchetFont = FontFamily(
         Font(R.font.trebuc, FontWeight.Normal),
-        Font(R.font.trebuc_bold, FontWeight.Bold )
+        Font(R.font.trebuc_bold, FontWeight.Bold)
 
     )
 
@@ -54,24 +54,23 @@ fun ContactItem(
             .padding(5.dp)
 
             .clickable {
-        navigator.navigate(
-            ProfileScreenDestination(
-                People(
-                    firstName = person.firstName,
-                    lastName = person.lastName,
-                    state = person.state,
-                    id = person.id,
-                    address = person.address,
-                    city = person.city,
-                    postcode = person.postcode,
-                    dept = person.dept,
-                    phoneNumber = person.phoneNumber,
-                    email = person.email
-
+                navigator.navigate(
+                    ProfileScreenDestination(
+                        People(
+                            firstName = person.firstName,
+                            lastName = person.lastName,
+                            state = person.state,
+                            id = person.id,
+                            address = person.address,
+                            city = person.city,
+                            postcode = person.postcode,
+                            dept = person.dept,
+                            phoneNumber = person.phoneNumber,
+                            email = person.email
+                        )
+                    )
                 )
-            )
-        )
-    }) {
+            }) {
 
         Row(
             modifier = Modifier
@@ -82,7 +81,7 @@ fun ContactItem(
             Surface(
                 shadowElevation = 5.dp,
                 shape = RoundedCornerShape(30, 90, 90, 0),
-                modifier = Modifier.padding(0.dp,15.dp, 0.dp, 15.dp)
+                modifier = Modifier.padding(0.dp, 15.dp, 0.dp, 15.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.profile_pic1),
@@ -108,17 +107,18 @@ fun ContactItem(
                     text = "${person.firstName} ${person.lastName}",
                     color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
+                    fontSize = 20.sp,
                     letterSpacing = 2.sp,
                     fontFamily = trebuchetFont,
                 )
                 Text(
                     text = person.dept,
-                    fontSize = 12.sp,
+                    fontSize = 16.sp,
                     color = LightOrange,
-                fontFamily = trebuchetFont)
+                    fontFamily = trebuchetFont
+                )
 
+            }
         }
     }
-}
 }

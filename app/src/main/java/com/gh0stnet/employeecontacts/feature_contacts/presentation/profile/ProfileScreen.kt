@@ -174,14 +174,14 @@ fun ProfileScreen(
                     Text(
                         letterSpacing = 3.sp,
                         text = "${people.firstName} ${people.lastName}",
-                        fontSize = 26.sp,
+                        fontSize = 28.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
                         color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
                     )
                     Text(
                         text = people.dept,
-                        fontSize = 14.sp,
+                        fontSize = 18.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Normal,
                         color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
@@ -199,18 +199,16 @@ fun ProfileScreen(
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
                         color = LightOrange,
-                        modifier = Modifier.weight(3f),
-                        fontSize = 18.sp
+                        modifier = Modifier.weight(2f),
+                        fontSize = 20.sp
                     )
                     Text(
                         text = "Email",
                         color = LightOrange,
                         modifier = Modifier.weight(2f),
-                        fontSize = 18.sp,
+                        fontSize = 20.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
-
-
                     )
                 }
                 Row(
@@ -219,12 +217,14 @@ fun ProfileScreen(
                         .padding(75.dp, 0.dp, 50.dp, 0.dp)
                 ) {
                     ClickableText(
-                        text = AnnotatedString(people.phoneNumber),
 
-                        modifier = Modifier.weight(3f),
+                        text = AnnotatedString(people.phoneNumber),
+                        modifier = Modifier.weight(2f),
                         style = TextStyle(
                             fontFamily = trebuchetFont,
                             fontWeight = FontWeight.Normal,
+                            fontSize = 14.sp,
+
                             color = if (isSystemInDarkTheme() )
                             Color.LightGray
                         else
@@ -241,10 +241,12 @@ fun ProfileScreen(
                     }
                     ClickableText(
                         text = AnnotatedString(people.email),
-                        modifier = Modifier.weight(3f),
+                        modifier = Modifier.weight(2f),
                         style = TextStyle(
                             fontFamily = trebuchetFont,
                             fontWeight = FontWeight.Normal,
+                            fontSize = 14.sp,
+
                             color = if (isSystemInDarkTheme())
                             Color.LightGray
                         else
@@ -269,10 +271,10 @@ fun ProfileScreen(
                     Text(
                         text = "Address",
                         color = LightOrange,
-                        modifier = Modifier.weight(3f),
+                        modifier = Modifier.weight(2f),
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+                        fontSize = 20.sp
                     )
                 }
                 Column(
@@ -288,13 +290,16 @@ fun ProfileScreen(
                             text = people.address,
                             fontFamily = trebuchetFont,
                             color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
-                            modifier = Modifier.weight(3f)
+                            modifier = Modifier.weight(2f),
+                            fontSize = 14.sp
                         )
                         Text(
-                            text = "${people.city}, ${people.state} ${people.postcode}",
+                            text = "${people.city} ${people.state} ${people.postcode}",
                             fontFamily = trebuchetFont,
                             color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
-                            modifier = Modifier.weight(3f)
+                            modifier = Modifier.weight(2f),
+                            fontSize = 14.sp
+
                         )
 
                 }

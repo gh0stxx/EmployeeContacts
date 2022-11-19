@@ -8,14 +8,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val contactUseCases: ContactUseCases,
     savedStateHandle: SavedStateHandle
 ) : ViewModel(){
     private var currentContactId: Int? = null
-
-
 
     init {
         savedStateHandle.get<Int>("contactId")?.let { contactId ->

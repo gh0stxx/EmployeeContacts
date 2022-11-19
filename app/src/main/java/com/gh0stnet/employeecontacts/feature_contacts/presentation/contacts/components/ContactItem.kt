@@ -24,6 +24,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,6 +42,13 @@ fun ContactItem(
     navigator: DestinationsNavigator
 
 ) {
+
+    val trebuchetFont = FontFamily(
+        Font(R.font.trebuc, FontWeight.Normal),
+        Font(R.font.trebuc_bold, FontWeight.Bold )
+
+    )
+
     Card(
         Modifier
             .padding(5.dp)
@@ -100,11 +109,16 @@ fun ContactItem(
                     color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
-                    letterSpacing = 2.sp
+                    letterSpacing = 2.sp,
+                    fontFamily = trebuchetFont,
                 )
-                Text(text = person.dept, fontSize = 12.sp, color = LightOrange)
-            }
+                Text(
+                    text = person.dept,
+                    fontSize = 12.sp,
+                    color = LightOrange,
+                fontFamily = trebuchetFont)
 
         }
     }
+}
 }

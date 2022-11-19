@@ -50,6 +50,8 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -71,6 +73,12 @@ fun ProfileScreen(
     people: People,
     navigator: DestinationsNavigator
 ) {
+
+    val trebuchetFont = FontFamily(
+        Font(R.font.trebuc, FontWeight.Normal),
+        Font(R.font.trebuc_bold, FontWeight.Bold )
+
+    )
 
     val context = LocalContext.current
     val systemUiController = rememberSystemUiController()
@@ -167,13 +175,15 @@ fun ProfileScreen(
                         letterSpacing = 3.sp,
                         text = "${people.firstName} ${people.lastName}",
                         fontSize = 26.sp,
-
+                        fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
                         color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
                     )
                     Text(
                         text = people.dept,
                         fontSize = 14.sp,
+                        fontFamily = trebuchetFont,
+                        fontWeight = FontWeight.Normal,
                         color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
                     )
 
@@ -186,17 +196,21 @@ fun ProfileScreen(
                 ) {
                     Text(
                         text = "Phone",
+                        fontFamily = trebuchetFont,
+                        fontWeight = FontWeight.Bold,
                         color = LightOrange,
                         modifier = Modifier.weight(3f),
-                        fontWeight = FontWeight.Bold,
                         fontSize = 18.sp
                     )
                     Text(
                         text = "Email",
                         color = LightOrange,
                         modifier = Modifier.weight(2f),
+                        fontSize = 18.sp,
+                        fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+
+
                     )
                 }
                 Row(
@@ -208,7 +222,10 @@ fun ProfileScreen(
                         text = AnnotatedString(people.phoneNumber),
 
                         modifier = Modifier.weight(3f),
-                        style = TextStyle(color = if (isSystemInDarkTheme())
+                        style = TextStyle(
+                            fontFamily = trebuchetFont,
+                            fontWeight = FontWeight.Normal,
+                            color = if (isSystemInDarkTheme() )
                             Color.LightGray
                         else
                             Color.Black)
@@ -225,7 +242,10 @@ fun ProfileScreen(
                     ClickableText(
                         text = AnnotatedString(people.email),
                         modifier = Modifier.weight(3f),
-                        style = TextStyle(color = if (isSystemInDarkTheme())
+                        style = TextStyle(
+                            fontFamily = trebuchetFont,
+                            fontWeight = FontWeight.Normal,
+                            color = if (isSystemInDarkTheme())
                             Color.LightGray
                         else
                             Color.Black)
@@ -250,6 +270,7 @@ fun ProfileScreen(
                         text = "Address",
                         color = LightOrange,
                         modifier = Modifier.weight(3f),
+                        fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp
                     )
@@ -265,11 +286,13 @@ fun ProfileScreen(
 
                         Text(
                             text = people.address,
+                            fontFamily = trebuchetFont,
                             color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                             modifier = Modifier.weight(3f)
                         )
                         Text(
                             text = "${people.city}, ${people.state} ${people.postcode}",
+                            fontFamily = trebuchetFont,
                             color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                             modifier = Modifier.weight(3f)
                         )

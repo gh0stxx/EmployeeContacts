@@ -15,6 +15,8 @@ class ProfileViewModel @Inject constructor(
 ) : ViewModel(){
     private var currentContactId: Int? = null
 
+
+
     init {
         savedStateHandle.get<Int>("contactId")?.let { contactId ->
             if (contactId != -1) {

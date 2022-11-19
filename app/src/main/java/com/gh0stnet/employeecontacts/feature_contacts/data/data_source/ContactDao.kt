@@ -19,7 +19,7 @@ interface ContactDao {
     @Query("SELECT * FROM people WHERE id = :id")
     suspend fun getContactById(id: Int): People?
 
-    @Query("SELECT * FROM people WHERE dept = :dept")
+    @Query("SELECT * FROM dept WHERE dept = :dept")
     suspend fun getPeopleWithDept(dept: String): List<PeopleWithDepartment>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

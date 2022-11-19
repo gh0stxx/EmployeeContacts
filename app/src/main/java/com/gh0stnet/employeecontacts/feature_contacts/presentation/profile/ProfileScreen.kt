@@ -164,9 +164,9 @@ fun ProfileScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        letterSpacing = 5.sp,
+                        letterSpacing = 3.sp,
                         text = "${people.firstName} ${people.lastName}",
-                        fontSize = 30.sp,
+                        fontSize = 26.sp,
 
                         fontWeight = FontWeight.Bold,
                         color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
@@ -224,7 +224,6 @@ fun ProfileScreen(
                     }
                     ClickableText(
                         text = AnnotatedString(people.email),
-
                         modifier = Modifier.weight(3f),
                         style = TextStyle(color = if (isSystemInDarkTheme())
                             Color.LightGray
@@ -274,7 +273,6 @@ fun ProfileScreen(
                             color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                             modifier = Modifier.weight(3f)
                         )
-
 
                 }
                 Image(

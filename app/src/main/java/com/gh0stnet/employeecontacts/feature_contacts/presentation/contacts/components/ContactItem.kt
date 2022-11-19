@@ -99,7 +99,7 @@ fun ContactItem(
                     text = "${person.firstName} ${person.lastName}",
                     color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
+                    fontSize = 18.sp,
                     letterSpacing = 2.sp
                 )
                 Text(text = person.dept, fontSize = 12.sp, color = LightOrange)

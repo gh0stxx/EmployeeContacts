@@ -37,6 +37,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.DeptSelection
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.UserInput
 import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.gh0stnet.employeecontacts.ui.theme.Red
@@ -105,7 +106,11 @@ fun AddEditScreen(
 
         content = {
 
-            Column(Modifier.verticalScroll(rememberScrollState()).background(if (isSystemInDarkTheme()) Charcoal else Color.White).fillMaxSize()) {
+            Column(
+                Modifier
+                    .verticalScroll(rememberScrollState())
+                    .background(if (isSystemInDarkTheme()) Charcoal else Color.White)
+                    .fillMaxSize()) {
                 Surface {
                     EditContent(
                         firstName = firstNameState,
@@ -122,15 +127,18 @@ fun AddEditScreen(
                         },
                     )
                 }
-                Surface(modifier = Modifier.fillMaxWidth().background(if (isSystemInDarkTheme()) Charcoal else Color.White),) {
+                Surface(modifier = Modifier
+                    .fillMaxWidth()
+                    .background(if (isSystemInDarkTheme()) Charcoal else Color.White),) {
 
                     Surface(
-                        modifier = Modifier.padding(80.dp, 0.dp, 80.dp, 0.dp).background(if (isSystemInDarkTheme()) Charcoal else Color.White),
+                        modifier = Modifier
+                            .padding(80.dp, 0.dp, 80.dp, 0.dp)
+                            .background(if (isSystemInDarkTheme()) Charcoal else Color.White),
                     ) {
                         Button(
                             onClick = {
                                 viewModel.onEvent(AddEditEvent.InsertContact)
-
                                       },
                             shape = RoundedCornerShape(30.dp),
                             colors = ButtonDefaults.buttonColors(Red),
@@ -173,7 +181,8 @@ fun EditContent(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth().fillMaxHeight()
+            .fillMaxWidth()
+            .fillMaxHeight()
             .padding(20.dp, 0.dp, 20.dp, 0.dp)
     ) {
         Spacer(modifier = Modifier.height(44.dp))
@@ -223,13 +232,8 @@ fun EditContent(
             text = postcode,
             hint = "Postcode",
             onTextChange = { onEvent(AddEditEvent.EnteredPostcode(it)) },
-            hasError = cState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
+            hasError = cState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Number),
         )
-        UserInput(
-            text = dept,
-            hint = "Department",
-            onTextChange = { onEvent(AddEditEvent.EnteredDept(it)) },
-            hasError = dState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Text),
-        )
+        DeptSelection(onTextChange = { onEvent(AddEditEvent.EnteredDept(it)) })
     }
 }

@@ -37,9 +37,7 @@ fun UserInput(
     ) {
 
         OutlinedTextField(
-            leadingIcon = {
 
-            },
             value = text,
 
             onValueChange = onTextChange,

@@ -45,7 +45,7 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
     Column(modifier = Modifier.padding(start = 35.dp, end = 35.dp, top = 10.dp, bottom = 12.dp)) {
         OutlinedTextField(
             value = selectText,
-            onValueChange = { var selectedText = it },
+            onValueChange = {},
             modifier = Modifier
                 .fillMaxWidth()
                 .onSizeChanged {
@@ -96,7 +96,6 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
                     selectText = label
                     expanded = false
                 })
-
                 {
                     Text(
                         text = label,

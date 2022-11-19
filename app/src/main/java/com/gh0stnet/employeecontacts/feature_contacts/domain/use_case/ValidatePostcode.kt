@@ -5,7 +5,7 @@ class ValidatePostcode {
         if(name.isBlank()) {
             return ValidationResult(
                 success = false,
-                errorMessage = "Country cannot be empty"
+                errorMessage = "Postcode cannot be empty"
             )
     }
         return ValidationResult(

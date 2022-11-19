@@ -22,11 +22,12 @@ class AddEditViewModel @Inject constructor(
 
     private val validationEventChannel = Channel<ValidationEvent>()
     val validationEvents = validationEventChannel.receiveAsFlow()
-        fun onEvent(event: AddEditEvent) {
+    fun onEvent(event: AddEditEvent) {
         when (event) {
             is AddEditEvent.EnteredFirstName -> {
                 state = state.copy(firstName = event.value)
             }
+
             is AddEditEvent.EnteredLastName -> {
                 state = state.copy(lastName = event.value)
             }
@@ -34,12 +35,15 @@ class AddEditViewModel @Inject constructor(
             is AddEditEvent.EnteredPhone -> {
                 state = state.copy(phone = event.value)
             }
+
             is AddEditEvent.EnteredEmail -> {
                 state = state.copy(email = event.value)
             }
+
             is AddEditEvent.EnteredAddress -> {
                 state = state.copy(address = event.value)
             }
+
             is AddEditEvent.EnteredCity -> {
                 state = state.copy(city = event.value)
             }
@@ -47,12 +51,15 @@ class AddEditViewModel @Inject constructor(
             is AddEditEvent.EnteredState -> {
                 state = state.copy(sstate = event.value)
             }
+
             is AddEditEvent.EnteredPostcode -> {
                 state = state.copy(postcode = event.value)
             }
+
             is AddEditEvent.EnteredDept -> {
                 state = state.copy(dept = event.value)
             }
+
             AddEditEvent.InsertContact -> {
                 submit()
             }
@@ -85,7 +92,7 @@ class AddEditViewModel @Inject constructor(
             !it.success
         }
 
-        if(hasError) {
+        if (hasError) {
             state = state.copy(
                 firstNameError = firstNameResult.errorMessage,
                 lastNameError = lastNameResult.errorMessage,
@@ -115,10 +122,11 @@ class AddEditViewModel @Inject constructor(
                     id = null
                 )
             )
-                        validationEventChannel.send(ValidationEvent.Success)
+            validationEventChannel.send(ValidationEvent.Success)
         }
     }
-sealed class ValidationEvent {
-        object Success: ValidationEvent()
+
+    sealed class ValidationEvent {
+        object Success : ValidationEvent()
     }
 }

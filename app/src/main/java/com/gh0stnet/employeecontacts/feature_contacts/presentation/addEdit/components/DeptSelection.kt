@@ -56,7 +56,7 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
 
                 color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
             ),
-            enabled = false,
+            readOnly = true,
             label = {
                 Text(
                     "Department",
@@ -79,6 +79,8 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
                 focusedBorderColor = LightOrange,
                 unfocusedBorderColor = Grey,
             ),
+            singleLine = true
+
         )
         DropdownMenu(
             expanded = expanded,

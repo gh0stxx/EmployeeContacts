@@ -1,5 +1,6 @@
 package com.gh0stnet.employeecontacts.feature_contacts.domain.use_case
 
+import com.gh0stnet.employeecontacts.feature_contacts.domain.model.Department
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.InvalidContactException
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.domain.repository.PeopleRepo
@@ -44,5 +45,7 @@ class AddContact(
             throw InvalidContactException("Department cannot be empty")
         }
         repo.insertContact(person)
+        repo.insertDept(department = Department(person.dept))
+
     }
 }

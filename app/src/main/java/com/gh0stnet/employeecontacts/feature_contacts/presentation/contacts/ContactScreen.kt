@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -19,6 +20,8 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -54,7 +57,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun ContactScreen(navigator: DestinationsNavigator,
                   viewModel: ContactViewModel = hiltViewModel(),
-
 
 ) {
 
@@ -100,7 +102,7 @@ fun ContactScreen(navigator: DestinationsNavigator,
 
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxSize().padding(5.dp)
                     .background(color = MaterialTheme.colorScheme.background),
                 contentPadding = values
 
@@ -112,7 +114,7 @@ fun ContactScreen(navigator: DestinationsNavigator,
                         viewModel = viewModel
                     )
 
-                       Divider(color = MaterialTheme.colorScheme.surface, thickness = 1.dp, )
+                       Divider(color = MaterialTheme.colorScheme.secondary, thickness = 0.3.dp)
                 }
             }
         }
@@ -128,7 +130,7 @@ fun TopAppBarActionButton(
     IconButton(onClick = {
        app.toggleTheme()
 
-    }) {
+    }, colors = IconButtonDefaults.outlinedIconButtonColors(contentColor = MaterialTheme.colorScheme.tertiary, containerColor = MaterialTheme.colorScheme.surface)) {
         
         Icon(imageVector = imageVector, contentDescription = description)
     }}

@@ -18,19 +18,21 @@ import androidx.core.view.ViewCompat
 
 private val DarkColorScheme = darkColorScheme(
     primary = Red,
-    secondary = Grey,
+    secondary = LightGrey,
     tertiary = MidGrey,
-    onBackground = Charcoal,
-    onSurface = Charcoal
+    background = Charcoal,
+    surface = LightGrey
+    // = Charcoal
+
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Red,
-    secondary = LightGrey,
+    secondary = Color.Black,
     tertiary = LightOrange,
 
     background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+    surface = Charcoal,
     onPrimary = Color(0xff941a1d),
     onSecondary = Color.White,
     onTertiary = Color(0xff595959),
@@ -40,7 +42,8 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun EmployeeContactsTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+
+    darkTheme: Boolean =  isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit

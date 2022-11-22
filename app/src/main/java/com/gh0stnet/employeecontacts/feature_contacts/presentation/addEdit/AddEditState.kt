@@ -1,22 +1,25 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit
 
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactScreen
+
 data class AddEditState(
-    val firstName: String = "",
+    var id: Int? = null,
+    var firstName: String = "",
     var firstNameError: String? = null,
-    val lastName: String = "",
+    var lastName: String = "",
     var lastNameError: String? = null,
-    val email: String = "",
+    var email: String = "",
     val emailError: String? = null,
-    val address: String = "",
+    var address: String = "",
     var addressError: String? = null,
-    val city: String = "",
+    var city: String = "",
     var cityError: String? = null,
-    val sstate: String = "",
+    var sstate: String = "",
     var stateError: String? = null,
-    val postcode: String = "",
+    var postcode: String = "",
     var postcodeError: String? = null,
-    val phone: String = "",
+    var phone: String = "",
     var phoneError: String? = null,
-    val dept: String = "",
+    var dept: String = "",
     var deptError: String? = null
 )

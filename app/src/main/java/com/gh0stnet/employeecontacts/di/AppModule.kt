@@ -1,7 +1,9 @@
 package com.gh0stnet.employeecontacts.di
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
+import com.gh0stnet.employeecontacts.ContactApp
 import com.gh0stnet.employeecontacts.feature_contacts.data.data_source.PeopleDatabase
 import com.gh0stnet.employeecontacts.feature_contacts.data.repository.PeopleRepoImpl
 import com.gh0stnet.employeecontacts.feature_contacts.domain.repository.PeopleRepo
@@ -23,6 +25,7 @@ import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.Validation
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -65,5 +68,11 @@ object AppModule {
             validateDept = ValidateDept(),
             validationResult = ValidationResult(success = true)
         )
+    }
+
+    @Singleton
+    @Provides
+    fun provideApp(@ApplicationContext app: Context) : ContactApp {
+        return app as ContactApp
     }
 }

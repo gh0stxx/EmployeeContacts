@@ -17,6 +17,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -29,6 +30,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -36,9 +38,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.DeptSelection
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.UserInput
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ContactScreenDestination
 import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.gh0stnet.employeecontacts.ui.theme.Red
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -50,9 +55,15 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 @Composable
 fun AddEditScreen(
-        navigator: DestinationsNavigator,
-        viewModel: AddEditViewModel = hiltViewModel(),
+    navigator: DestinationsNavigator,
+    viewModel: AddEditViewModel = hiltViewModel(),
+    user: People?
+
     ) {
+
+
+
+
     val firstNameState = viewModel.state.firstName
     val lastNameState = viewModel.state.lastName
     val phoneState = viewModel.state.phone
@@ -62,9 +73,12 @@ fun AddEditScreen(
     val stateState = viewModel.state.sstate
     val postcodeState = viewModel.state.postcode
     val deptState = viewModel.state.dept
+    var idState = viewModel.state.id
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
     val systemUiController = rememberSystemUiController()
+
+
 
     SideEffect {
         systemUiController.setStatusBarColor(
@@ -83,13 +97,13 @@ fun AddEditScreen(
                         Toast.LENGTH_LONG,
 
                     ).show()
-                    navigator.navigateUp()
+                    navigator.navigate(direction = ContactScreenDestination)
                 }
             }
         }
     }
     Scaffold(
-         Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White),
+         Modifier.background(MaterialTheme.colors.background),
         scaffoldState = scaffoldState,
         topBar = { TopAppBar(
             title = { Text("Add Contact")},
@@ -109,7 +123,7 @@ fun AddEditScreen(
             Column(
                 Modifier
                     .verticalScroll(rememberScrollState())
-                    .background(if (isSystemInDarkTheme()) Charcoal else Color.White)
+                    .background(MaterialTheme.colors.background)
                     .fillMaxSize()) {
                 Surface {
                     EditContent(

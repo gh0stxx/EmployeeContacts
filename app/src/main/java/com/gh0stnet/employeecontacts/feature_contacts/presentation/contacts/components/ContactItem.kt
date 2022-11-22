@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactViewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
 import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
@@ -39,14 +42,14 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun ContactItem(
     person: People,
-    navigator: DestinationsNavigator
+    navigator: DestinationsNavigator,
+    viewModel: ContactViewModel
 
 ) {
 
     val trebuchetFont = FontFamily(
         Font(R.font.trebuc, FontWeight.Normal),
         Font(R.font.trebuc_bold, FontWeight.Bold)
-
     )
 
     Card(
@@ -75,7 +78,7 @@ fun ContactItem(
         Row(
             modifier = Modifier
                 //.matchParentSize()
-                .background(if (isSystemInDarkTheme()) Charcoal else Color.White),
+                .background(MaterialTheme.colorScheme.background),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
@@ -105,7 +108,7 @@ fun ContactItem(
             ) {
                 Text(
                     text = "${person.firstName} ${person.lastName}",
-                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     letterSpacing = 2.sp,

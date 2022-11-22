@@ -10,5 +10,6 @@ sealed class AddEditEvent {
     data class EnteredState(val value: String): AddEditEvent()
     data class EnteredPostcode(val value: String): AddEditEvent()
     data class EnteredDept(val value: String): AddEditEvent()
+    data class Id(val value: Int?): AddEditEvent()
     object InsertContact: AddEditEvent()
 }

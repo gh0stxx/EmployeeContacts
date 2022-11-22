@@ -20,19 +20,24 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.FabPosition
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
@@ -56,6 +61,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.AddEditScreenDestination
@@ -66,13 +74,19 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
 @Composable
 fun ProfileScreen(
     people: People,
-    navigator: DestinationsNavigator
+    navigator: DestinationsNavigator,
+    viewModel: ProfileViewModel = hiltViewModel()
+
 ) {
+
+
+
 
     val trebuchetFont = FontFamily(
         Font(R.font.trebuc, FontWeight.Normal),
@@ -91,8 +105,8 @@ fun ProfileScreen(
 
     val scaffoldState = rememberScaffoldState()
     Scaffold(
-         Modifier.background(if (isSystemInDarkTheme()) Charcoal else Color.White),
-        scaffoldState = scaffoldState,
+         Modifier.background(MaterialTheme.colorScheme.background),
+       // scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
                 title = { Text("Profile") },
@@ -103,33 +117,37 @@ fun ProfileScreen(
                         Icon(Icons.Rounded.ArrowBack, "back arrow")
                     }
                 },
-                backgroundColor = Red,
-                contentColor = Color.White
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Red, titleContentColor = Color.White, navigationIconContentColor = Color.White)
+
+                //contentColor = Color.White
             )
         },
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigator.navigate(AddEditScreenDestination) },
-                backgroundColor = Red,
+                onClick = { navigator.navigate(AddEditScreenDestination(user = people)) },
+                containerColor = Red,
                 contentColor = Color.White
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")
+                Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit contact")
             }
         }
-    ) {
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.surface) {
+    ) {values ->
+        Surface(modifier = Modifier
+            .fillMaxSize()
+            .padding(values), color = MaterialTheme.colorScheme.background) {
             Column(
                 modifier = Modifier
                     .verticalScroll(
                         enabled = true,
                         state = ScrollState(initial = DEFAULT_BUFFER_SIZE)
                     )
-                    .background(if (isSystemInDarkTheme()) Charcoal else Color.White)
+                    .background(MaterialTheme.colorScheme.background)
+
             ) {
                 Surface(
                     modifier = Modifier.height(320.dp),
-                    color = if (isSystemInDarkTheme()) Charcoal else Color.White
+                    color = MaterialTheme.colorScheme.background
                 ) {
 
                     val image = ImageBitmap.imageResource(R.drawable.redbg)
@@ -177,14 +195,14 @@ fun ProfileScreen(
                         fontSize = 28.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
-                        color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
+                        color = MaterialTheme.colorScheme.secondary
                     )
                     Text(
                         text = people.dept,
                         fontSize = 18.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Normal,
-                        color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
+                        color =  MaterialTheme.colorScheme.secondary
                     )
 
                 }
@@ -225,11 +243,8 @@ fun ProfileScreen(
                             fontWeight = FontWeight.Normal,
                             fontSize = 14.sp,
 
-                            color = if (isSystemInDarkTheme() )
-                            Color.LightGray
-                        else
-                            Color.Black)
-                    ) {
+                            color = MaterialTheme.colorScheme.secondary)
+                        ) {
                         ContextCompat.startActivity(
                             context,
                             Intent(
@@ -247,11 +262,8 @@ fun ProfileScreen(
                             fontWeight = FontWeight.Normal,
                             fontSize = 14.sp,
 
-                            color = if (isSystemInDarkTheme())
-                            Color.LightGray
-                        else
-                            Color.Black)
-                    ) {
+                            color =  MaterialTheme.colorScheme.secondary)
+                        ) {
                         ContextCompat.startActivity(
                             context,
                             Intent(
@@ -289,14 +301,14 @@ fun ProfileScreen(
                         Text(
                             text = people.address,
                             fontFamily = trebuchetFont,
-                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                            color =  MaterialTheme.colorScheme.secondary,
                             modifier = Modifier.weight(2f),
                             fontSize = 14.sp
                         )
                         Text(
                             text = "${people.city} ${people.state} ${people.postcode}",
                             fontFamily = trebuchetFont,
-                            color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black,
+                            color =  MaterialTheme.colorScheme.secondary,
                             modifier = Modifier.weight(2f),
                             fontSize = 14.sp
 

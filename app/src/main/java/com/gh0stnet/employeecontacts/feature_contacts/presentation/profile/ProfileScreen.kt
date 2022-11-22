@@ -6,7 +6,6 @@ import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,10 +20,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.rounded.ArrowBack
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -35,9 +32,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
@@ -61,13 +56,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.AddEditScreenDestination
-import com.gh0stnet.employeecontacts.ui.theme.Charcoal
+import com.gh0stnet.employeecontacts.ui.theme.LightGrey
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 import com.gh0stnet.employeecontacts.ui.theme.Red
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -81,8 +73,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun ProfileScreen(
     people: People,
     navigator: DestinationsNavigator,
-    viewModel: ProfileViewModel = hiltViewModel()
-
 ) {
 
 
@@ -103,10 +93,8 @@ fun ProfileScreen(
         )
     }
 
-    val scaffoldState = rememberScaffoldState()
     Scaffold(
          Modifier.background(MaterialTheme.colorScheme.background),
-       // scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
                 title = { Text("Profile") },
@@ -117,7 +105,7 @@ fun ProfileScreen(
                         Icon(Icons.Rounded.ArrowBack, "back arrow")
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Red, titleContentColor = Color.White, navigationIconContentColor = Color.White)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Red, titleContentColor = Color.LightGray, navigationIconContentColor = LightGrey)
 
                 //contentColor = Color.White
             )
@@ -127,7 +115,7 @@ fun ProfileScreen(
             FloatingActionButton(
                 onClick = { navigator.navigate(AddEditScreenDestination(user = people)) },
                 containerColor = Red,
-                contentColor = Color.White
+                contentColor = LightGrey
             ) {
                 Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit contact")
             }

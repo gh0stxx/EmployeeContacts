@@ -43,6 +43,7 @@ import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.compo
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.UserInput
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ContactScreenDestination
 import com.gh0stnet.employeecontacts.ui.theme.Charcoal
+import com.gh0stnet.employeecontacts.ui.theme.LightGrey
 import com.gh0stnet.employeecontacts.ui.theme.Red
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
@@ -99,7 +100,7 @@ fun AddEditScreen(
          Modifier.background(MaterialTheme.colors.background),
         scaffoldState = scaffoldState,
         topBar = { TopAppBar(
-            title = { Text("Add Contact")},
+            title = { Text("Add Contact", color = LightGrey)},
             navigationIcon = {
                 IconButton(onClick = {
                     navigator.navigateUp()
@@ -108,7 +109,7 @@ fun AddEditScreen(
                 }
             },
             backgroundColor = Red,
-            contentColor = Color.White
+            contentColor = LightGrey
         )},
 
         content = {
@@ -153,7 +154,7 @@ fun AddEditScreen(
                             modifier = Modifier.padding(10.dp)
                         )
                         {
-                            Text(text = "Submit", fontWeight = FontWeight.Bold, color = Color.White)
+                            Text(text = "Submit", fontWeight = FontWeight.Bold, color = LightGrey)
                         }
                     }
                 }
@@ -185,6 +186,7 @@ fun EditContent(
     val sState = viewModel.state.stateError
     val cState = viewModel.state.postcodeError
     val dState = viewModel.state.deptError
+
 
     Column(
         modifier = Modifier
@@ -241,6 +243,6 @@ fun EditContent(
             onTextChange = { onEvent(AddEditEvent.EnteredPostcode(it)) },
             hasError = cState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Number),
         )
-        DeptSelection( onTextChange = { onEvent(AddEditEvent.EnteredDept(it)) })
+        DeptSelection( onTextChange = { onEvent(AddEditEvent.EnteredDept(it))}, hasError = dState)
     }
 }

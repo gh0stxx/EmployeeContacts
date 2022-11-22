@@ -21,17 +21,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import com.gh0stnet.employeecontacts.ui.theme.Grey
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 
 @Composable
-fun DeptSelection(onTextChange: (String) -> Unit) {
+fun DeptSelection(hasError: String?, onTextChange: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     val suggestions = listOf("Management", "Human Resources", "Accounts", "Sales")
     var selectText by remember { mutableStateOf("") }
@@ -39,12 +43,19 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
 
     val icon = if (expanded) Icons.Filled.ArrowDropUp
     else Icons.Filled.ArrowDropDown
-    Column(modifier = Modifier.padding(start = 35.dp, end = 35.dp, top = 10.dp, bottom = 12.dp)) {
+    Column(modifier = Modifier.padding(
+        start = 35.dp,
+        end = 35.dp,
+        top = 10.dp,
+        bottom = 12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally)
+    {
         OutlinedTextField(
             value = selectText,
             onValueChange = {},
             modifier = Modifier
                 .fillMaxWidth()
+
                 .onSizeChanged {
                     dropDownWidth = it.width
                 },
@@ -103,5 +114,9 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
                 }
             }
         }
+        if (hasError != null) {
+            androidx.compose.material3.Text(text = hasError, color = Color.Red, fontSize = 12.sp, textAlign = TextAlign.Center)
+        }
     }
+
 }

@@ -2,7 +2,6 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.comp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,21 +15,19 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
-import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.gh0stnet.employeecontacts.ui.theme.Grey
-import com.gh0stnet.employeecontacts.ui.theme.LightGrey
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 
 @Composable
@@ -54,7 +51,7 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
 
             textStyle = TextStyle(
 
-                color = if (isSystemInDarkTheme()) Color.LightGray else Color.Black
+                color = MaterialTheme.colorScheme.secondary
             ),
             readOnly = true,
             label = {
@@ -63,7 +60,7 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
                     style = TextStyle(
                         color = LightOrange
                     ),
-                    )
+                )
             },
             trailingIcon = {
                 Icon(
@@ -72,7 +69,7 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
                     Modifier
 
                         .clickable { expanded = !expanded },
-                    tint = if (isSystemInDarkTheme()) LightGrey else Charcoal
+                    tint = LightOrange
                 )
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -86,7 +83,7 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
             expanded = expanded,
             onDismissRequest = { expanded = false },
             modifier = Modifier
-                .background(if (isSystemInDarkTheme()) Charcoal else Color.White)
+                .background(MaterialTheme.colorScheme.background)
                 .width(with(LocalDensity.current) { dropDownWidth.toDp() }),
             properties = PopupProperties(focusable = true)
         ) {
@@ -102,7 +99,7 @@ fun DeptSelection(onTextChange: (String) -> Unit) {
                         style = TextStyle(
                             color = LightOrange
                         ),
-                        )
+                    )
                 }
             }
         }

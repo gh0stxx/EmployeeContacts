@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,8 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -35,7 +34,6 @@ import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactViewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
-import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -44,7 +42,6 @@ fun ContactItem(
     person: People,
     navigator: DestinationsNavigator,
     viewModel: ContactViewModel
-
 ) {
 
     val trebuchetFont = FontFamily(
@@ -122,6 +119,9 @@ fun ContactItem(
                 )
 
             }
+
         }
+
     }
+    Divider(color = MaterialTheme.colorScheme.secondary, thickness = 0.3.dp)
 }

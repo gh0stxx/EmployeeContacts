@@ -30,7 +30,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -38,7 +37,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.DeptSelection
@@ -58,11 +56,7 @@ fun AddEditScreen(
     navigator: DestinationsNavigator,
     viewModel: AddEditViewModel = hiltViewModel(),
     user: People?
-
     ) {
-
-
-
 
     val firstNameState = viewModel.state.firstName
     val lastNameState = viewModel.state.lastName
@@ -73,7 +67,6 @@ fun AddEditScreen(
     val stateState = viewModel.state.sstate
     val postcodeState = viewModel.state.postcode
     val deptState = viewModel.state.dept
-    var idState = viewModel.state.id
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
     val systemUiController = rememberSystemUiController()
@@ -248,6 +241,6 @@ fun EditContent(
             onTextChange = { onEvent(AddEditEvent.EnteredPostcode(it)) },
             hasError = cState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Number),
         )
-        DeptSelection(onTextChange = { onEvent(AddEditEvent.EnteredDept(it)) })
+        DeptSelection( onTextChange = { onEvent(AddEditEvent.EnteredDept(it)) })
     }
 }

@@ -1,6 +1,5 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.profile
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
@@ -67,7 +66,6 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
 @Composable
 fun ProfileScreen(
@@ -105,9 +103,10 @@ fun ProfileScreen(
                         Icon(Icons.Rounded.ArrowBack, "back arrow")
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Red, titleContentColor = Color.LightGray, navigationIconContentColor = LightGrey)
-
-                //contentColor = Color.White
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Red,
+                    titleContentColor = Color.LightGray,
+                    navigationIconContentColor = LightGrey)
             )
         },
         floatingActionButtonPosition = FabPosition.End,
@@ -198,15 +197,16 @@ fun ProfileScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(75.dp, 20.dp, 50.dp, 10.dp)
+                        .padding(65.dp, 20.dp, 10.dp, 10.dp)
                 ) {
                     Text(
                         text = "Phone",
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
                         color = LightOrange,
-                        modifier = Modifier.weight(2f),
-                        fontSize = 20.sp
+                        modifier = Modifier.weight(2.5f),
+                        fontSize = 20.sp,
+
                     )
                     Text(
                         text = "Email",
@@ -215,21 +215,24 @@ fun ProfileScreen(
                         fontSize = 20.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
+
+
                     )
                 }
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(75.dp, 0.dp, 50.dp, 0.dp)
+                        .padding(65.dp, 0.dp, 10.dp, 0.dp)
                 ) {
                     ClickableText(
 
                         text = AnnotatedString(people.phoneNumber),
-                        modifier = Modifier.weight(2f),
+                        modifier = Modifier.weight(2.5f),
                         style = TextStyle(
                             fontFamily = trebuchetFont,
                             fontWeight = FontWeight.Normal,
                             fontSize = 14.sp,
+
 
                             color = MaterialTheme.colorScheme.secondary)
                         ) {
@@ -250,6 +253,7 @@ fun ProfileScreen(
                             fontWeight = FontWeight.Normal,
                             fontSize = 14.sp,
 
+
                             color =  MaterialTheme.colorScheme.secondary)
                         ) {
                         ContextCompat.startActivity(
@@ -266,7 +270,7 @@ fun ProfileScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(75.dp, 20.dp, 50.dp, 10.dp)
+                        .padding(65.dp, 20.dp, 10.dp, 10.dp)
                 ) {
                     Text(
                         text = "Address",
@@ -274,7 +278,9 @@ fun ProfileScreen(
                         modifier = Modifier.weight(2f),
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        fontSize = 20.sp,
+
+
                     )
                 }
                 Column(
@@ -282,7 +288,7 @@ fun ProfileScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(40.dp)
-                        .padding(75.dp, 0.dp, 50.dp, 0.dp)
+                        .padding(65.dp, 0.dp, 10.dp, 0.dp)
 
                 ) {
 
@@ -291,14 +297,17 @@ fun ProfileScreen(
                             fontFamily = trebuchetFont,
                             color =  MaterialTheme.colorScheme.secondary,
                             modifier = Modifier.weight(2f),
-                            fontSize = 14.sp
+                            fontSize = 14.sp,
+
+
                         )
                         Text(
                             text = "${people.city} ${people.state} ${people.postcode}",
                             fontFamily = trebuchetFont,
                             color =  MaterialTheme.colorScheme.secondary,
                             modifier = Modifier.weight(2f),
-                            fontSize = 14.sp
+                            fontSize = 14.sp,
+
 
                         )
 
@@ -308,7 +317,7 @@ fun ProfileScreen(
                     contentDescription = "Logo",
                     modifier = Modifier
                         .size(150.dp)
-                        .padding(75.dp, 0.dp, 0.dp, 0.dp)
+                        .padding(65.dp, 0.dp, 10.dp, 0.dp)
                 )
             }
         }

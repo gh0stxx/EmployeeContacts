@@ -57,6 +57,7 @@ fun AddEditScreen(
     navigator: DestinationsNavigator,
     viewModel: AddEditViewModel = hiltViewModel(),
     user: People?
+//why you say you no need user when it breaks without kotlin?
     ) {
 
     val firstNameState = viewModel.state.firstName
@@ -71,8 +72,6 @@ fun AddEditScreen(
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
     val systemUiController = rememberSystemUiController()
-
-
 
     SideEffect {
         systemUiController.setStatusBarColor(
@@ -100,7 +99,7 @@ fun AddEditScreen(
          Modifier.background(MaterialTheme.colors.background),
         scaffoldState = scaffoldState,
         topBar = { TopAppBar(
-            title = { Text("Add Contact", color = LightGrey)},
+            title = { Text("Add/Edit Contact", color = LightGrey)},
             navigationIcon = {
                 IconButton(onClick = {
                     navigator.navigateUp()
@@ -174,6 +173,7 @@ fun EditContent(
     state: String,
     postcode: String,
     dept: String,
+    //Same with this, I don't know why dept string is declared not needed when it is
     onEvent: (AddEditEvent) -> Unit,
 ) {
     val viewModel = viewModel<AddEditViewModel>()
@@ -186,7 +186,6 @@ fun EditContent(
     val sState = viewModel.state.stateError
     val cState = viewModel.state.postcodeError
     val dState = viewModel.state.deptError
-
 
     Column(
         modifier = Modifier

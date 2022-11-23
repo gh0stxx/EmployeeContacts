@@ -7,6 +7,7 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class ContactApp : Application() {
 
+    // theme toggle backend
     val isDark = mutableStateOf(true)
 
     fun toggleTheme() {

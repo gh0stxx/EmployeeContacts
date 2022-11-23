@@ -3,6 +3,7 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -84,6 +85,7 @@ fun ContactScreen(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
+                    .padding(20.dp, 0.dp, 20.dp, 0.dp)
                     .background(color = MaterialTheme.colorScheme.background),
                 contentPadding = values
 

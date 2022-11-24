@@ -83,7 +83,6 @@ fun ProfileScreen(
 
     val trebuchetFont = FontFamily(
         Font(R.font.trebuc, FontWeight.Normal), Font(R.font.trebuc_bold, FontWeight.Bold)
-
     )
 
     val context = LocalContext.current
@@ -110,7 +109,8 @@ fun ProfileScreen(
             navigationIcon = {
             IconButton(onClick = {
                 navigator.navigateUp()
-            }) {
+            },
+            ) {
                 Icon(Icons.Rounded.ArrowBack, "back arrow")
             }
         }, colors = TopAppBarDefaults.topAppBarColors(
@@ -123,7 +123,8 @@ fun ProfileScreen(
         FloatingActionButton(
             onClick = { navigator.navigate(AddEditScreenDestination(user = people)) },
             containerColor = Red,
-            contentColor = LightGrey
+            contentColor = LightGrey,
+            shape = IconButtonDefaults.outlinedShape
         ) {
             Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit contact")
         }
@@ -183,12 +184,12 @@ fun ProfileScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        letterSpacing = 3.sp,
+                        letterSpacing = 2.sp,
                         text = "${people.firstName} ${people.lastName}",
                         fontSize = 28.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.secondary
+                        color = LightOrange
                     )
                     Text(
                         text = people.dept,
@@ -316,10 +317,8 @@ fun TopAppBarActionButton2(
 
         }, colors = IconButtonDefaults.outlinedIconButtonColors(
             contentColor = LightGrey,
-           // containerColor = MaterialTheme.colorScheme.surface
         )
     ) {
-
-        Icon(imageVector = imageVector, contentDescription = description)
+        Icon(imageVector = imageVector, contentDescription = description, modifier = Modifier.size(28.dp))
     }
 }

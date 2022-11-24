@@ -78,7 +78,7 @@ fun ContactItem(
             Surface(
                 shadowElevation = 5.dp,
                 shape = RoundedCornerShape(30, 90, 90, 0),
-                modifier = Modifier.padding(0.dp, 15.dp, 0.dp, 15.dp)
+                modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 10.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.profile_pic1),
@@ -86,7 +86,7 @@ fun ContactItem(
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .width(104.dp)
-                        .height(61.dp)
+                        .height(65.dp)
                         .clip(shape = RoundedCornerShape(30, 90, 90, 0))
                         .border(
                             0.1.dp,
@@ -104,7 +104,7 @@ fun ContactItem(
                     color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
-                    letterSpacing = 2.sp,
+                    letterSpacing = 1.5.sp,
                     fontFamily = trebuchetFont,
                 )
                 Text(

@@ -65,8 +65,7 @@ fun ContactScreen(
                 imageVector = if(viewModel.app.isDark.value)
                     Icons.Outlined.DarkMode
                 else
-                    Icons.Outlined.LightMode
-                ,
+                    Icons.Outlined.LightMode,
                 description = "Toggle theme",
                 app = viewModel.app
             )
@@ -78,12 +77,13 @@ fun ContactScreen(
             FloatingActionButton(
                 onClick = { navigator.navigate(AddEditScreenDestination(user = null)) },
                 containerColor = Red,
-                contentColor = Color.White
+                contentColor = Color.White,
+                shape = IconButtonDefaults.outlinedShape
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")
             }
-        }, content = { values ->
-
+        },
+        content = { values ->
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -111,13 +111,10 @@ fun TopAppBarActionButton(
     IconButton(
         onClick = {
             app.toggleTheme()
-
         }, colors = IconButtonDefaults.outlinedIconButtonColors(
             contentColor = LightGrey,
-            //containerColor = MaterialTheme.colorScheme.surface
         )
     ) {
-
         Icon(imageVector = imageVector, contentDescription = description)
     }
 }

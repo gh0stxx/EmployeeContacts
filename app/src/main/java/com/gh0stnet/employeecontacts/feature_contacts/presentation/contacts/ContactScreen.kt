@@ -8,7 +8,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.outlined.Lightbulb
+import androidx.compose.material.icons.outlined.DarkMode
+import androidx.compose.material.icons.outlined.LightMode
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -61,7 +62,11 @@ fun ContactScreen(
             containerColor = Red, titleContentColor = LightGrey
         ), actions = {
             TopAppBarActionButton(
-                imageVector = Icons.Outlined.Lightbulb,
+                imageVector = if(viewModel.app.isDark.value)
+                    Icons.Outlined.DarkMode
+                else
+                    Icons.Outlined.LightMode
+                ,
                 description = "Toggle theme",
                 app = viewModel.app
             )
@@ -108,8 +113,8 @@ fun TopAppBarActionButton(
             app.toggleTheme()
 
         }, colors = IconButtonDefaults.outlinedIconButtonColors(
-            contentColor = MaterialTheme.colorScheme.tertiary,
-            containerColor = MaterialTheme.colorScheme.surface
+            contentColor = LightGrey,
+            //containerColor = MaterialTheme.colorScheme.surface
         )
     ) {
 

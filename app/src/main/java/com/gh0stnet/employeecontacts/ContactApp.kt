@@ -9,7 +9,11 @@ class ContactApp : Application() {
 
     // theme toggle backend
     val isDark = mutableStateOf(true)
+    val isBigger = mutableStateOf(false)
 
+    fun toggleFontSize() {
+        isBigger.value = !isBigger.value
+    }
     fun toggleTheme() {
         isDark.value = !isDark.value
     }

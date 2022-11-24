@@ -20,12 +20,15 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.outlined.ZoomIn
+import androidx.compose.material.icons.outlined.ZoomOut
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -43,6 +46,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.ImageShader
 import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
@@ -55,8 +59,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.gh0stnet.employeecontacts.ContactApp
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactViewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.AddEditScreenDestination
 import com.gh0stnet.employeecontacts.ui.theme.LightGrey
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
@@ -71,6 +78,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun ProfileScreen(
     people: People,
     navigator: DestinationsNavigator,
+    viewModel: ContactViewModel = hiltViewModel()
 ) {
 
     val trebuchetFont = FontFamily(
@@ -87,7 +95,19 @@ fun ProfileScreen(
     }
 
     Scaffold(Modifier.background(MaterialTheme.colorScheme.background), topBar = {
-        TopAppBar(title = { Text("Profile") }, navigationIcon = {
+        TopAppBar(title = { Text("Profile") },
+
+            actions = {
+                TopAppBarActionButton2(
+                    imageVector = if(viewModel.app.isBigger.value)
+                        Icons.Outlined.ZoomOut
+                    else
+                        Icons.Outlined.ZoomIn,
+                    description = "Toggle font size",
+                    app = viewModel.app
+                )
+            },
+            navigationIcon = {
             IconButton(onClick = {
                 navigator.navigateUp()
             }) {
@@ -213,7 +233,7 @@ fun ProfileScreen(
                         style = TextStyle(
                             fontFamily = trebuchetFont,
                             fontWeight = FontWeight.Normal,
-                            fontSize = 14.sp,
+                            fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp,
                             color = MaterialTheme.colorScheme.secondary
                         )
                     ) {
@@ -229,7 +249,7 @@ fun ProfileScreen(
                         style = TextStyle(
                             fontFamily = trebuchetFont,
                             fontWeight = FontWeight.Normal,
-                            fontSize = 14.sp,
+                            fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp,
                             color = MaterialTheme.colorScheme.secondary
                         )
                     ) {
@@ -267,15 +287,13 @@ fun ProfileScreen(
                         fontFamily = trebuchetFont,
                         color = MaterialTheme.colorScheme.secondary,
                         modifier = Modifier.weight(2f),
-                        fontSize = 14.sp,
-                    )
+                        fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp,                    )
                     Text(
                         text = "${people.city} ${people.state} ${people.postcode}",
                         fontFamily = trebuchetFont,
                         color = MaterialTheme.colorScheme.secondary,
                         modifier = Modifier.weight(2f),
-                        fontSize = 14.sp,
-                    )
+                        fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp,                    )
                 }
                 Image(
                     painter = painterResource(id = R.drawable.logo),
@@ -286,5 +304,22 @@ fun ProfileScreen(
                 )
             }
         }
+    }
+}
+@Composable
+fun TopAppBarActionButton2(
+    imageVector: ImageVector, description: String, app: ContactApp
+) {
+    IconButton(
+        onClick = {
+            app.toggleFontSize()
+
+        }, colors = IconButtonDefaults.outlinedIconButtonColors(
+            contentColor = LightGrey,
+           // containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+
+        Icon(imageVector = imageVector, contentDescription = description)
     }
 }

@@ -87,7 +87,7 @@ fun ContactScreen(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(20.dp, 0.dp, 20.dp, 0.dp)
+                    .padding(5.dp, 3.dp, 5.dp, 0.dp)
                     .background(color = MaterialTheme.colorScheme.background),
                 contentPadding = values
 
@@ -95,6 +95,7 @@ fun ContactScreen(
                 items(state.contact) { contact ->
                     ContactItem(
                         person = contact, navigator = navigator,
+                        app = viewModel.app
                     )
 
                     Divider(color = MaterialTheme.colorScheme.surface, thickness = 0.2.dp)

@@ -1,5 +1,7 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.components
 
+import android.app.Application
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -14,6 +16,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -30,9 +34,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.gh0stnet.employeecontacts.ContactApp
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
+import com.gh0stnet.employeecontacts.ui.theme.Charcoal
+import com.gh0stnet.employeecontacts.ui.theme.LightGrey
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -40,6 +47,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun ContactItem(
     person: People,
     navigator: DestinationsNavigator,
+    app: ContactApp
 ) {
 
     val trebuchetFont = FontFamily(
@@ -48,10 +56,12 @@ fun ContactItem(
     )
 
     Card(
+
         Modifier
             .padding(5.dp)
-
+            .fillMaxWidth()
             .clickable {
+
                 navigator.navigate(
                     ProfileScreenDestination(
                         People(
@@ -68,7 +78,9 @@ fun ContactItem(
                         )
                     )
                 )
-            }) {
+            }, elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
+        border = BorderStroke(0.2.dp, if(app.isDark.value) Color.Black else LightGrey )
+    ) {
 
         Row(
             modifier = Modifier
@@ -78,7 +90,7 @@ fun ContactItem(
             Surface(
                 shadowElevation = 5.dp,
                 shape = RoundedCornerShape(30, 90, 90, 0),
-                modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 10.dp)
+                modifier = Modifier.padding(10.dp, 10.dp, 0.dp, 10.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.profile_pic1),
@@ -119,5 +131,5 @@ fun ContactItem(
         }
 
     }
-    Divider(color = MaterialTheme.colorScheme.secondary, thickness = 0.3.dp)
+    //Divider(color = MaterialTheme.colorScheme.secondary, thickness = 0.3.dp)
 }

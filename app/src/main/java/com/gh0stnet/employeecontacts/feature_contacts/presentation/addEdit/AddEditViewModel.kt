@@ -1,8 +1,6 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit
 
-import android.util.Log
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.internal.illegalDecoyCallException
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
@@ -11,26 +9,25 @@ import androidx.lifecycle.viewModelScope
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.ContinuationInterceptor
 
 @HiltViewModel
 class AddEditViewModel @Inject constructor(
     private val contactUseCases: ContactUseCases,
-savedStateHandle: SavedStateHandle
-
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private val user: People?
- init {
-    user = savedStateHandle.get<People>("user")
- }
 
-        var state by mutableStateOf(AddEditState(
+    private val user: People?
+
+    init {
+        user = savedStateHandle.get<People>("user")
+    }
+
+    var state by mutableStateOf(
+        AddEditState(
             firstName = user?.firstName ?: "",
             lastName = user?.lastName ?: "",
             phone = user?.phoneNumber ?: "",
@@ -41,10 +38,8 @@ savedStateHandle: SavedStateHandle
             postcode = user?.postcode ?: "",
             dept = user?.dept ?: "",
             id = user?.id
-
-        ))
-
-
+        )
+    )
 
     private val validationEventChannel = Channel<ValidationEvent>()
     val validationEvents = validationEventChannel.receiveAsFlow()
@@ -85,6 +80,7 @@ savedStateHandle: SavedStateHandle
             is AddEditEvent.EnteredDept -> {
                 state = state.copy(dept = event.value)
             }
+
             is AddEditEvent.Id -> {
                 state = state.copy(id = event.value)
             }

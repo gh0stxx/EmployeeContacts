@@ -29,8 +29,6 @@ fun UserInput(
     hasError: String?,
     keyboard: KeyboardOptions,
     onTextChange: (String) -> Unit,
-
-
 ) {
     Column(
         modifier = modifier
@@ -40,9 +38,7 @@ fun UserInput(
     ) {
 
         OutlinedTextField(
-
             value = text,
-
             onValueChange = onTextChange,
             modifier = Modifier
                 .padding(top = 10.dp)

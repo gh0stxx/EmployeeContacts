@@ -58,7 +58,7 @@ fun AddEditScreen(
     viewModel: AddEditViewModel = hiltViewModel(),
     user: People?
 //why you say you no need user when it breaks without kotlin?
-    ) {
+) {
 
     val firstNameState = viewModel.state.firstName
     val lastNameState = viewModel.state.lastName
@@ -89,27 +89,29 @@ fun AddEditScreen(
                         "Registration successful",
                         Toast.LENGTH_LONG,
 
-                    ).show()
+                        ).show()
                     navigator.navigate(direction = ContactScreenDestination)
                 }
             }
         }
     }
     Scaffold(
-         Modifier.background(MaterialTheme.colors.background),
+        Modifier.background(MaterialTheme.colors.background),
         scaffoldState = scaffoldState,
-        topBar = { TopAppBar(
-            title = { Text("Add/Edit Contact", color = LightGrey)},
-            navigationIcon = {
-                IconButton(onClick = {
-                    navigator.navigateUp()
-                }) {
-                    Icon(Icons.Rounded.ArrowBack, "back arrow")
-                }
-            },
-            backgroundColor = Red,
-            contentColor = LightGrey
-        )},
+        topBar = {
+            TopAppBar(
+                title = { Text("Add/Edit Contact", color = LightGrey) },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navigator.navigateUp()
+                    }) {
+                        Icon(Icons.Rounded.ArrowBack, "back arrow")
+                    }
+                },
+                backgroundColor = Red,
+                contentColor = LightGrey
+            )
+        },
 
         content = {
 
@@ -117,7 +119,8 @@ fun AddEditScreen(
                 Modifier
                     .verticalScroll(rememberScrollState())
                     .background(MaterialTheme.colors.background)
-                    .fillMaxSize()) {
+                    .fillMaxSize()
+            ) {
                 Surface {
                     EditContent(
                         firstName = firstNameState,
@@ -134,9 +137,11 @@ fun AddEditScreen(
                         },
                     )
                 }
-                Surface(modifier = Modifier
-                    .fillMaxWidth()
-                    .background(if (isSystemInDarkTheme()) Charcoal else Color.White),) {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(if (isSystemInDarkTheme()) Charcoal else Color.White),
+                ) {
 
                     Surface(
                         modifier = Modifier
@@ -146,7 +151,7 @@ fun AddEditScreen(
                         Button(
                             onClick = {
                                 viewModel.onEvent(AddEditEvent.InsertContact)
-                                      },
+                            },
                             shape = RoundedCornerShape(30.dp),
                             colors = ButtonDefaults.buttonColors(Red),
                             elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
@@ -242,6 +247,6 @@ fun EditContent(
             onTextChange = { onEvent(AddEditEvent.EnteredPostcode(it)) },
             hasError = cState, keyboard = KeyboardOptions(keyboardType = KeyboardType.Number),
         )
-        DeptSelection( onTextChange = { onEvent(AddEditEvent.EnteredDept(it))}, hasError = dState)
+        DeptSelection(onTextChange = { onEvent(AddEditEvent.EnteredDept(it)) }, hasError = dState)
     }
 }

@@ -2,7 +2,6 @@ package com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gh0stnet.employeecontacts.ContactApp
@@ -19,7 +18,6 @@ import javax.inject.Inject
 class ContactViewModel @Inject constructor(
     private val contactUseCases: ContactUseCases,
     val app: ContactApp,
-    val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private var getContactJobs: Job? = null

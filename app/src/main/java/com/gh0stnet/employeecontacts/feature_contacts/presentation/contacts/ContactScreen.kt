@@ -45,9 +45,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun ContactScreen(
     navigator: DestinationsNavigator,
     viewModel: ContactViewModel = hiltViewModel(),
-
-
-    ) {
+) {
 
     val state = viewModel.state.value
     val systemUiController = rememberSystemUiController()
@@ -58,19 +56,18 @@ fun ContactScreen(
         )
     }
 
-    Scaffold(Modifier.background(MaterialTheme.colorScheme.background),
-        topBar = {
-            TopAppBar(title = { Text("EOI Connect") }, colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = Red, titleContentColor = LightGrey
-            ),
-                actions = {
-                    TopAppBarActionButton(
-                        imageVector = Icons.Outlined.Lightbulb,
-                        description = "Toggle theme",
-                        app = viewModel.app
-                    )
-                })
-        },
+    Scaffold(Modifier.background(MaterialTheme.colorScheme.background), topBar = {
+        TopAppBar(title = { Text("EOI Connect") }, colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = Red, titleContentColor = LightGrey
+        ), actions = {
+            TopAppBarActionButton(
+                imageVector = Icons.Outlined.Lightbulb,
+                description = "Toggle theme",
+                app = viewModel.app
+            )
+        }
+        )
+    },
 
         floatingActionButtonPosition = FabPosition.End, floatingActionButton = {
             FloatingActionButton(
@@ -92,13 +89,14 @@ fun ContactScreen(
             ) {
                 items(state.contact) { contact ->
                     ContactItem(
-                        person = contact, navigator = navigator, viewModel = viewModel
+                        person = contact, navigator = navigator,
                     )
 
                     Divider(color = MaterialTheme.colorScheme.surface, thickness = 0.2.dp)
                 }
             }
-        })
+        }
+    )
 }
 
 @Composable

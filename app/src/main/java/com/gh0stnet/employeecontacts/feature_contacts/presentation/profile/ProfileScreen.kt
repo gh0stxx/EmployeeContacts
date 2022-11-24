@@ -73,12 +73,8 @@ fun ProfileScreen(
     navigator: DestinationsNavigator,
 ) {
 
-
-
-
     val trebuchetFont = FontFamily(
-        Font(R.font.trebuc, FontWeight.Normal),
-        Font(R.font.trebuc_bold, FontWeight.Bold )
+        Font(R.font.trebuc, FontWeight.Normal), Font(R.font.trebuc_bold, FontWeight.Bold)
 
     )
 
@@ -86,55 +82,48 @@ fun ProfileScreen(
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = Red,
-            darkIcons = false
+            color = Red, darkIcons = false
         )
     }
 
-    Scaffold(
-         Modifier.background(MaterialTheme.colorScheme.background),
-        topBar = {
-            TopAppBar(
-                title = { Text("Profile") },
-                navigationIcon = {
-                    IconButton(onClick = {
-                        navigator.navigateUp()
-                    }) {
-                        Icon(Icons.Rounded.ArrowBack, "back arrow")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Red,
-                    titleContentColor = Color.LightGray,
-                    navigationIconContentColor = LightGrey)
-            )
-        },
-        floatingActionButtonPosition = FabPosition.End,
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { navigator.navigate(AddEditScreenDestination(user = people)) },
-                containerColor = Red,
-                contentColor = LightGrey
-            ) {
-                Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit contact")
+    Scaffold(Modifier.background(MaterialTheme.colorScheme.background), topBar = {
+        TopAppBar(title = { Text("Profile") }, navigationIcon = {
+            IconButton(onClick = {
+                navigator.navigateUp()
+            }) {
+                Icon(Icons.Rounded.ArrowBack, "back arrow")
             }
+        }, colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = Red,
+            titleContentColor = Color.LightGray,
+            navigationIconContentColor = LightGrey
+        )
+        )
+    }, floatingActionButtonPosition = FabPosition.End, floatingActionButton = {
+        FloatingActionButton(
+            onClick = { navigator.navigate(AddEditScreenDestination(user = people)) },
+            containerColor = Red,
+            contentColor = LightGrey
+        ) {
+            Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit contact")
         }
-    ) {values ->
-        Surface(modifier = Modifier
-            .fillMaxSize()
-            .padding(values), color = MaterialTheme.colorScheme.background) {
+    }) { values ->
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(values),
+            color = MaterialTheme.colorScheme.background
+        ) {
             Column(
                 modifier = Modifier
                     .verticalScroll(
-                        enabled = true,
-                        state = ScrollState(initial = DEFAULT_BUFFER_SIZE)
+                        enabled = true, state = ScrollState(initial = DEFAULT_BUFFER_SIZE)
                     )
                     .background(MaterialTheme.colorScheme.background)
 
             ) {
                 Surface(
-                    modifier = Modifier.height(320.dp),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.height(320.dp), color = MaterialTheme.colorScheme.background
                 ) {
 
                     val image = ImageBitmap.imageResource(R.drawable.redbg)
@@ -152,12 +141,10 @@ fun ProfileScreen(
                             .fillMaxWidth()
                             .absoluteOffset(0.dp, (-100).dp)
                             .background(brush)
-                    ) {
-                    }
-                    Box(
-                        Modifier
-                            .fillMaxSize()
+                    )
 
+                    Box(
+                        Modifier.fillMaxSize()
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_pic1),
@@ -170,7 +157,6 @@ fun ProfileScreen(
                         )
                     }
                 }
-
                 Spacer(modifier = Modifier.height(30.dp))
                 Column(
                     modifier = Modifier.fillMaxWidth(),
@@ -189,9 +175,8 @@ fun ProfileScreen(
                         fontSize = 18.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Normal,
-                        color =  MaterialTheme.colorScheme.secondary
+                        color = MaterialTheme.colorScheme.secondary
                     )
-
                 }
                 Spacer(modifier = Modifier.size(20.dp))
                 Row(
@@ -206,7 +191,6 @@ fun ProfileScreen(
                         color = LightOrange,
                         modifier = Modifier.weight(2.5f),
                         fontSize = 20.sp,
-
                     )
                     Text(
                         text = "Email",
@@ -215,8 +199,6 @@ fun ProfileScreen(
                         fontSize = 20.sp,
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
-
-
                     )
                 }
                 Row(
@@ -232,18 +214,14 @@ fun ProfileScreen(
                             fontFamily = trebuchetFont,
                             fontWeight = FontWeight.Normal,
                             fontSize = 14.sp,
-
-
-                            color = MaterialTheme.colorScheme.secondary)
-                        ) {
-                        ContextCompat.startActivity(
-                            context,
-                            Intent(
-                                Intent.ACTION_DIAL,
-                                Uri.parse("tel:" + people.phoneNumber)),
-                            null
+                            color = MaterialTheme.colorScheme.secondary
                         )
-
+                    ) {
+                        ContextCompat.startActivity(
+                            context, Intent(
+                                Intent.ACTION_DIAL, Uri.parse("tel:" + people.phoneNumber)
+                            ), null
+                        )
                     }
                     ClickableText(
                         text = AnnotatedString(people.email),
@@ -252,18 +230,14 @@ fun ProfileScreen(
                             fontFamily = trebuchetFont,
                             fontWeight = FontWeight.Normal,
                             fontSize = 14.sp,
-
-
-                            color =  MaterialTheme.colorScheme.secondary)
-                        ) {
+                            color = MaterialTheme.colorScheme.secondary
+                        )
+                    ) {
                         ContextCompat.startActivity(
-                            context,
-                            Intent(
-                                Intent.ACTION_SENDTO,
-                                Uri.parse("mailto:" + people.email)
+                            context, Intent(
+                                Intent.ACTION_SENDTO, Uri.parse("mailto:" + people.email)
                             ), null
                         )
-
                     }
                 }
                 Spacer(modifier = Modifier.size(2.dp))
@@ -279,38 +253,29 @@ fun ProfileScreen(
                         fontFamily = trebuchetFont,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp,
-
-
                     )
                 }
                 Column(
-
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(40.dp)
                         .padding(65.dp, 0.dp, 10.dp, 0.dp)
 
                 ) {
-
-                        Text(
-                            text = people.address,
-                            fontFamily = trebuchetFont,
-                            color =  MaterialTheme.colorScheme.secondary,
-                            modifier = Modifier.weight(2f),
-                            fontSize = 14.sp,
-
-
-                        )
-                        Text(
-                            text = "${people.city} ${people.state} ${people.postcode}",
-                            fontFamily = trebuchetFont,
-                            color =  MaterialTheme.colorScheme.secondary,
-                            modifier = Modifier.weight(2f),
-                            fontSize = 14.sp,
-
-
-                        )
-
+                    Text(
+                        text = people.address,
+                        fontFamily = trebuchetFont,
+                        color = MaterialTheme.colorScheme.secondary,
+                        modifier = Modifier.weight(2f),
+                        fontSize = 14.sp,
+                    )
+                    Text(
+                        text = "${people.city} ${people.state} ${people.postcode}",
+                        fontFamily = trebuchetFont,
+                        color = MaterialTheme.colorScheme.secondary,
+                        modifier = Modifier.weight(2f),
+                        fontSize = 14.sp,
+                    )
                 }
                 Image(
                     painter = painterResource(id = R.drawable.logo),

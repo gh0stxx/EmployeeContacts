@@ -115,7 +115,9 @@ fun DeptSelection(hasError: String?, onTextChange: (String) -> Unit) {
             }
         }
         if (hasError != null) {
-            androidx.compose.material3.Text(text = hasError, color = Color.Red, fontSize = 12.sp, textAlign = TextAlign.Center)
+            androidx.compose.material3.Text(text = hasError,
+                color = Color.Red, fontSize = 12.sp,
+                textAlign = TextAlign.Center)
         }
     }
 

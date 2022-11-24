@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
-import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactViewModel
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ProfileScreenDestination
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -41,7 +40,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun ContactItem(
     person: People,
     navigator: DestinationsNavigator,
-    viewModel: ContactViewModel
 ) {
 
     val trebuchetFont = FontFamily(
@@ -74,7 +72,6 @@ fun ContactItem(
 
         Row(
             modifier = Modifier
-                //.matchParentSize()
                 .background(MaterialTheme.colorScheme.background),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -88,7 +85,6 @@ fun ContactItem(
                     contentDescription = "Profile picture",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        //.padding(5.dp)
                         .width(104.dp)
                         .height(61.dp)
                         .clip(shape = RoundedCornerShape(30, 90, 90, 0))

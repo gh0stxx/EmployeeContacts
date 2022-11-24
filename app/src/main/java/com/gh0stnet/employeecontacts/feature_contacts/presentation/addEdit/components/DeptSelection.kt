@@ -31,11 +31,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.AddEditViewModel
 import com.gh0stnet.employeecontacts.ui.theme.Grey
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 
 @Composable
-fun DeptSelection(hasError: String?, onTextChange: (String) -> Unit) {
+fun DeptSelection(
+    viewModel: AddEditViewModel = hiltViewModel(),
+    hasError: String?,
+    onTextChange: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     val suggestions = listOf("Management", "Human Resources", "Accounts", "Sales")
     var selectText by remember { mutableStateOf("") }
@@ -61,7 +66,7 @@ fun DeptSelection(hasError: String?, onTextChange: (String) -> Unit) {
                 },
 
             textStyle = TextStyle(
-
+                fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp,
                 color = MaterialTheme.colorScheme.secondary
             ),
             readOnly = true,
@@ -69,6 +74,7 @@ fun DeptSelection(hasError: String?, onTextChange: (String) -> Unit) {
                 Text(
                     "Department",
                     style = TextStyle(
+                        fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp,
                         color = LightOrange
                     ),
                 )
@@ -108,6 +114,7 @@ fun DeptSelection(hasError: String?, onTextChange: (String) -> Unit) {
                     Text(
                         text = label,
                         style = TextStyle(
+                            fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp,
                             color = LightOrange
                         ),
                     )

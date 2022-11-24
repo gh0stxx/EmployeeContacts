@@ -17,6 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.AddEditViewModel
 import com.gh0stnet.employeecontacts.ui.theme.Grey
 import com.gh0stnet.employeecontacts.ui.theme.LightOrange
 
@@ -28,6 +30,7 @@ fun UserInput(
     modifier: Modifier = Modifier,
     hasError: String?,
     keyboard: KeyboardOptions,
+    viewModel: AddEditViewModel = hiltViewModel(),
     onTextChange: (String) -> Unit,
 ) {
     Column(
@@ -44,13 +47,15 @@ fun UserInput(
                 .padding(top = 10.dp)
                 .width(300.dp),
             textStyle = TextStyle(
-                color = MaterialTheme.colorScheme.secondary
+                color = MaterialTheme.colorScheme.secondary,
+                fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp
             ),
             keyboardOptions = keyboard,
             label = {
                 Text(
                     hint, style = TextStyle(
-                        color = LightOrange
+                        color = LightOrange,
+                        fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp
                     )
                 )
             },

@@ -22,6 +22,8 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ZoomIn
+import androidx.compose.material.icons.outlined.ZoomOut
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Button
@@ -42,6 +44,7 @@ import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.DeptSelection
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit.components.UserInput
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.ContactScreenDestination
+import com.gh0stnet.employeecontacts.feature_contacts.presentation.profile.TopAppBarActionButton2
 import com.gh0stnet.employeecontacts.ui.theme.Charcoal
 import com.gh0stnet.employeecontacts.ui.theme.LightGrey
 import com.gh0stnet.employeecontacts.ui.theme.Red
@@ -57,6 +60,7 @@ fun AddEditScreen(
     navigator: DestinationsNavigator,
     viewModel: AddEditViewModel = hiltViewModel(),
     user: People?
+
 //why you say you no need user when it breaks without kotlin?
 ) {
 
@@ -101,6 +105,19 @@ fun AddEditScreen(
         topBar = {
             TopAppBar(
                 title = { Text("Add/Edit Contact", color = LightGrey) },
+
+                actions = {
+                    TopAppBarActionButton2(
+                        imageVector = if(viewModel.app.isBigger.value)
+                            Icons.Outlined.ZoomOut
+                        else
+                            Icons.Outlined.ZoomIn,
+                        description = "Toggle font size",
+                        app = viewModel.app
+                    )
+                },
+
+
                 navigationIcon = {
                     IconButton(onClick = {
                         navigator.navigateUp()

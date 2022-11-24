@@ -1,7 +1,5 @@
 package com.gh0stnet.employeecontacts.feature_contacts.presentation.addEdit
 
-import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.ContactScreen
-
 data class AddEditState(
     var id: Int? = null,
     var firstName: String = "",

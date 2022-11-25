@@ -14,13 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.core.view.ViewCompat
 
 private val DarkColorScheme = darkColorScheme(
     primary = Red,
     secondary = LightGrey,
     tertiary = MidGrey,
     background = Charcoal,
+    surfaceVariant = Charc2,
     surface = LightGrey
     // = Charcoal
 
@@ -61,7 +61,7 @@ fun EmployeeContactsTheme(
     if (!view.isInEditMode) {
         SideEffect {
             (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
+            //ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
         }
     }
 

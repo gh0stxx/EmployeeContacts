@@ -54,9 +54,7 @@ fun ContactItem(
         Font(R.font.trebuc, FontWeight.Normal),
         Font(R.font.trebuc_bold, FontWeight.Bold)
     )
-
     Card(
-
         Modifier
             .padding(5.dp)
             .fillMaxWidth()
@@ -131,5 +129,4 @@ fun ContactItem(
         }
 
     }
-    //Divider(color = MaterialTheme.colorScheme.secondary, thickness = 0.3.dp)
 }

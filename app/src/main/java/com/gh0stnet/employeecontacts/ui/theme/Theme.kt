@@ -22,7 +22,6 @@ private val DarkColorScheme = darkColorScheme(
     background = Charcoal,
     surfaceVariant = Charc2,
     surface = LightGrey
-    // = Charcoal
 
 )
 

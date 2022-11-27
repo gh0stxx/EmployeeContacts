@@ -37,19 +37,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.ImageShader
-import androidx.compose.ui.graphics.ShaderBrush
-import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
@@ -146,24 +141,12 @@ fun ProfileScreen(
                 Surface(
                     modifier = Modifier.height(320.dp), color = MaterialTheme.colorScheme.background
                 ) {
-
-                    val image = ImageBitmap.imageResource(R.drawable.redbg)
-                    val brush = remember(image) {
-                        ShaderBrush(
-                            ImageShader(
-                                image,
-                                TileMode.Repeated,
-                                TileMode.Repeated,
-                            )
-                        )
-                    }
                     Box(
                         Modifier
                             .fillMaxWidth()
                             .absoluteOffset(0.dp, (-100).dp)
-                            .background(brush)
+                            .background(Brush.verticalGradient(0F to Red, .6F to Red, 1F to Color.Transparent))
                     )
-
                     Box(
                         Modifier.fillMaxSize()
                     ) {

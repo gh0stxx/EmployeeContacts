@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gh0stnet.employeecontacts.ContactApp
+import com.gh0stnet.employeecontacts.feature_contacts.domain.repository.DatastoreRepo
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
 import com.gh0stnet.employeecontacts.feature_contacts.domain.util.OrderType
 import com.gh0stnet.employeecontacts.feature_contacts.domain.util.PeopleOrder
@@ -12,25 +13,33 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
 class ContactViewModel @Inject constructor(
     private val contactUseCases: ContactUseCases,
     val app: ContactApp,
+    private val dataRepo: DatastoreRepo
 ) : ViewModel() {
 
     private var getContactJobs: Job? = null
 
+    fun storeTheme(value: Boolean) = runBlocking {
+        dataRepo.storePref("theme", value)
+    }
 
+    fun getTheme(): Boolean = runBlocking {
 
+        dataRepo.getPref("theme") == true
+    }
     init {
+
         getContacts(PeopleOrder.Name(OrderType.Ascending))
     }
 
     private val _state = mutableStateOf(ContactsState())
     val state: State<ContactsState> = _state
-
 
     private fun getContacts(contactOrder: PeopleOrder) {
         getContactJobs?.cancel()

@@ -67,7 +67,8 @@ fun ContactScreen(
                 else
                     Icons.Outlined.LightMode,
                 description = "Toggle theme",
-                app = viewModel.app
+                app = viewModel.app,
+                viewModel
             )
         }
         )
@@ -107,11 +108,16 @@ fun ContactScreen(
 
 @Composable
 fun TopAppBarActionButton(
-    imageVector: ImageVector, description: String, app: ContactApp
+    imageVector: ImageVector,
+    description: String,
+    app: ContactApp,
+    viewModel: ContactViewModel
 ) {
     IconButton(
         onClick = {
+            viewModel.storeTheme(!app.isDark.value)
             app.toggleTheme()
+
         }, colors = IconButtonDefaults.outlinedIconButtonColors(
             contentColor = LightGrey,
         )

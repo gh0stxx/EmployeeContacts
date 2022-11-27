@@ -5,7 +5,9 @@ import android.content.Context
 import androidx.room.Room
 import com.gh0stnet.employeecontacts.ContactApp
 import com.gh0stnet.employeecontacts.feature_contacts.data.data_source.PeopleDatabase
+import com.gh0stnet.employeecontacts.feature_contacts.data.repository.DatastoreImpl
 import com.gh0stnet.employeecontacts.feature_contacts.data.repository.PeopleRepoImpl
+import com.gh0stnet.employeecontacts.feature_contacts.domain.repository.DatastoreRepo
 import com.gh0stnet.employeecontacts.feature_contacts.domain.repository.PeopleRepo
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.AddContact
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
@@ -32,6 +34,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun providesDataStoreRepo(
+        @ApplicationContext context: Context
+    ): DatastoreRepo = DatastoreImpl(context)
 
     @Provides
     @Singleton

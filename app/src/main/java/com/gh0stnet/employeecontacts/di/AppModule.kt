@@ -48,7 +48,7 @@ object AppModule {
             app,
             PeopleDatabase::class.java,
             PeopleDatabase.DATABASE_NAME
-        ).build()
+        ).createFromAsset("database/people_db.db").build()
 }
 
     @Provides

@@ -58,7 +58,7 @@ fun ContactScreen(
     }
 
     Scaffold(Modifier.background(MaterialTheme.colorScheme.background), topBar = {
-        TopAppBar(title = { Text("EOI Connect") }, colors = TopAppBarDefaults.topAppBarColors(
+        TopAppBar(title = { Text("ROI Connect") }, colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Red, titleContentColor = LightGrey
         ), actions = {
             TopAppBarActionButton(

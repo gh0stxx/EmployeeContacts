@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -87,21 +88,21 @@ fun ContactItem(
         ) {
             Surface(
                 shadowElevation = 5.dp,
-                shape = RoundedCornerShape(30, 90, 90, 0),
-                modifier = Modifier.padding(10.dp, 10.dp, 0.dp, 10.dp)
+                shape = RoundedCornerShape(0, 90, 90, 0),
+                modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.profile_pic1),
+                    painter = painter(person.id!!),
                     contentDescription = "Profile picture",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .width(104.dp)
-                        .height(65.dp)
-                        .clip(shape = RoundedCornerShape(30, 90, 90, 0))
+                        .height(80.dp)
+                        .clip(shape = RoundedCornerShape(0, 90, 90, 0))
                         .border(
                             0.1.dp,
                             color = Color.Gray,
-                            shape = RoundedCornerShape(30, 90, 90, 0)
+                            shape = RoundedCornerShape(0, 90, 90, 0)
                         )
                 )
             }
@@ -128,5 +129,22 @@ fun ContactItem(
 
         }
 
+    }
+}
+
+@Composable
+private fun painter(id: Int): Painter {
+
+    return when(id) {
+        1 -> painterResource(id = R.drawable.profile_pic11)
+        2 -> painterResource(id = R.drawable.profile2)
+        3 -> painterResource(id = R.drawable.profile_pic3)
+        4 -> painterResource(id = R.drawable.profile4)
+        6 -> painterResource(id = R.drawable.profile6)
+        7 -> painterResource(id = R.drawable.profile_pic13)
+        8 -> painterResource(id = R.drawable.profile8)
+        9 -> painterResource(id = R.drawable.poppa)
+        11 -> painterResource(id = R.drawable.baby)
+        else -> painterResource(id = R.drawable.profile_pic1)
     }
 }

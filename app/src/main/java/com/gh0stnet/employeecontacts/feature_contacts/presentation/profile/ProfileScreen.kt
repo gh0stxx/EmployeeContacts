@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -145,13 +146,19 @@ fun ProfileScreen(
                         Modifier
                             .fillMaxWidth()
                             .absoluteOffset(0.dp, (-100).dp)
-                            .background(Brush.verticalGradient(0F to Red, .6F to Red, 1F to Color.Transparent))
+                            .background(
+                                Brush.verticalGradient(
+                                    0F to Red,
+                                    .6F to Red,
+                                    1F to Color.Transparent
+                                )
+                            )
                     )
                     Box(
                         Modifier.fillMaxSize()
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.profile_pic1),
+                            painter = painter(people.id!!),
                             contentDescription = "Profile pic",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
@@ -303,5 +310,22 @@ fun TopAppBarActionButton2(
         )
     ) {
         Icon(imageVector = imageVector, contentDescription = description, modifier = Modifier.size(28.dp))
+    }
+}
+
+@Composable
+private fun painter(id: Int): Painter {
+
+    return when(id) {
+        1 -> painterResource(id = R.drawable.profile_pic11)
+        2 -> painterResource(id = R.drawable.profile2)
+        3 -> painterResource(id = R.drawable.profile_pic3)
+        4 -> painterResource(id = R.drawable.profile4)
+        6 -> painterResource(id = R.drawable.profile6)
+        7 -> painterResource(id = R.drawable.profile_pic13)
+        8 -> painterResource(id = R.drawable.profile8)
+        9 -> painterResource(id = R.drawable.poppa)
+        11 -> painterResource(id = R.drawable.baby)
+        else -> painterResource(id = R.drawable.profile_pic1)
     }
 }

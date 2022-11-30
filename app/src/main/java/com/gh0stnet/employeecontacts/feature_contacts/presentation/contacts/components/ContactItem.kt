@@ -73,12 +73,12 @@ fun ContactItem(
             AlertDialog(
 
                 onDismissRequest = { showDeleteConfirm = false },
-                title = { Text(text = "Delete Contact",
+                title = { Text(text = stringResource(R.string.delete_contact),
                     color = LightGrey,
                     fontWeight = FontWeight.Bold) },
                 text = {
                     Text(
-                        text = "Are you sure you want to delete this contact?",
+                        text = stringResource(R.string.delete_diag),
                         color = LightGrey,
                         fontSize = 16.sp,
 
@@ -105,8 +105,6 @@ fun ContactItem(
                 containerColor = Red,
                 tonalElevation = 4.dp,
                 properties = DialogProperties(decorFitsSystemWindows = true)
-
-
             )
         }
     }
@@ -135,7 +133,6 @@ fun ContactItem(
                 },
                 onLongClick = {
                     showDeleteConfirm = true
-
                 }
 
             ), elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
@@ -186,11 +183,8 @@ fun ContactItem(
                     color = LightOrange,
                     fontFamily = trebuchetFont
                 )
-
             }
-
         }
-
     }
 }
 

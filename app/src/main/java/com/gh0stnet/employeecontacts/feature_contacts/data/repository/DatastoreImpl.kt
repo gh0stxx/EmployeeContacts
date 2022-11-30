@@ -18,8 +18,8 @@ class DatastoreImpl @Inject constructor(
     override suspend fun storePref(key: String, value: Boolean) {
 
        val prefKey =  booleanPreferencesKey(key)
-        context.dataStore.edit {
-            it[prefKey] = value
+        context.dataStore.edit {save ->
+            save[prefKey] = value
         }
     }
 

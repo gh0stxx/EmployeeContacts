@@ -35,13 +35,13 @@ class ContactViewModel @Inject constructor(
 
         dataRepo.getPref("theme") == true
     }
+
+    private val _state = mutableStateOf(ContactsState())
+    val state: State<ContactsState> = _state
     init {
 
         getContacts(PeopleOrder.Name(OrderType.Ascending))
     }
-
-    private val _state = mutableStateOf(ContactsState())
-    val state: State<ContactsState> = _state
 
     private fun getContacts(contactOrder: PeopleOrder) {
         getContactJobs?.cancel()

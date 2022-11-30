@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
             //elvis operator needed for first run after install otherwise will crash with null reference
             //because datastore is empty, will be created after theme is toggled first time
-            EmployeeContactsTheme(app.isDark.value ?: true) {
+            EmployeeContactsTheme(app.isDark.value == true) {
                 DestinationsNavHost(navGraph = NavGraphs.root)
             }
         }

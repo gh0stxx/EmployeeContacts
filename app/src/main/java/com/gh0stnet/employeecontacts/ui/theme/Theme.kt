@@ -21,7 +21,10 @@ private val DarkColorScheme = darkColorScheme(
     tertiary = MidGrey,
     background = Charcoal,
     surfaceVariant = Charc2,
-    surface = LightGrey
+    surface = Charcoal,
+    secondaryContainer = Charcoal,
+    primaryContainer = Charcoal,
+    onBackground = Charcoal
 
 )
 
@@ -29,14 +32,15 @@ private val LightColorScheme = lightColorScheme(
     primary = Red,
     secondary = Color.Black,
     tertiary = LightOrange,
-
+    primaryContainer = Color.White,
     background = Color(0xFFFFFBFE),
-    surface = Charcoal,
+    surface = Color.White,
     onPrimary = Color(0xff941a1d),
     onSecondary = Color.White,
     onTertiary = Color(0xff595959),
-    onBackground = Color(0xFFB1B1B1),
+    onBackground = Color.White,
     onSurface = Color(0xFF1C1B1F),
+    secondaryContainer = Color.White
     )
 
 @Composable

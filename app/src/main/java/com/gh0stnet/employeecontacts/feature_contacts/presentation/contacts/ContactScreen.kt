@@ -27,9 +27,11 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gh0stnet.employeecontacts.ContactApp
+import com.gh0stnet.employeecontacts.R
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.contacts.components.ContactItem
 import com.gh0stnet.employeecontacts.feature_contacts.presentation.destinations.AddEditScreenDestination
 import com.gh0stnet.employeecontacts.ui.theme.LightGrey
@@ -58,7 +60,7 @@ fun ContactScreen(
     }
 
     Scaffold(Modifier.background(MaterialTheme.colorScheme.background), topBar = {
-        TopAppBar(title = { Text("ROI Connect") }, colors = TopAppBarDefaults.topAppBarColors(
+        TopAppBar(title = { Text(stringResource(R.string.TITLE)) }, colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Red, titleContentColor = LightGrey
         ), actions = {
             TopAppBarActionButton(
@@ -66,7 +68,7 @@ fun ContactScreen(
                     Icons.Outlined.DarkMode
                 else
                     Icons.Outlined.LightMode,
-                description = "Toggle theme",
+                description = stringResource(R.string.TOGGLE_THEME),
                 app = viewModel.app,
                 viewModel
             )
@@ -81,7 +83,7 @@ fun ContactScreen(
                 contentColor = Color.White,
                 shape = IconButtonDefaults.outlinedShape
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add contact")
+                Icon(imageVector = Icons.Default.Add, contentDescription = stringResource(R.string.ADD))
             }
         },
         content = { values ->
@@ -96,7 +98,8 @@ fun ContactScreen(
                 items(state.contact) { contact ->
                     ContactItem(
                         person = contact, navigator = navigator,
-                        app = viewModel.app
+                        app = viewModel.app,
+                        viewModel = viewModel
                     )
 
                     Divider(color = MaterialTheme.colorScheme.surface, thickness = 0.2.dp)

@@ -47,6 +47,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -90,15 +91,12 @@ fun ProfileScreen(
     }
 
     Scaffold(Modifier.background(MaterialTheme.colorScheme.background), topBar = {
-        TopAppBar(title = { Text("Profile") },
+        TopAppBar(title = { Text(stringResource(R.string.PROFILE)) },
 
             actions = {
                 TopAppBarActionButton2(
-                    imageVector = if(viewModel.app.isBigger.value)
-                        Icons.Outlined.ZoomOut
-                    else
-                        Icons.Outlined.ZoomIn,
-                    description = "Toggle font size",
+                    imageVector = imageVector(viewModel),
+                    description = stringResource(R.string.TOGGLE_FONT),
                     app = viewModel.app
                 )
             },
@@ -107,7 +105,7 @@ fun ProfileScreen(
                 navigator.navigateUp()
             },
             ) {
-                Icon(Icons.Rounded.ArrowBack, "back arrow")
+                Icon(Icons.Rounded.ArrowBack, stringResource(R.string.BACK_ARROW))
             }
         }, colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Red,
@@ -122,7 +120,7 @@ fun ProfileScreen(
             contentColor = LightGrey,
             shape = IconButtonDefaults.outlinedShape
         ) {
-            Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit contact")
+            Icon(imageVector = Icons.Default.Edit, contentDescription = stringResource(R.string.EDIT_CONTACT))
         }
     }) { values ->
         Surface(
@@ -159,7 +157,7 @@ fun ProfileScreen(
                     ) {
                         Image(
                             painter = painter(people.id!!),
-                            contentDescription = "Profile pic",
+                            contentDescription = stringResource(R.string.PROFILE_PIC),
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .size(260.dp)
@@ -258,7 +256,7 @@ fun ProfileScreen(
                         .padding(65.dp, 20.dp, 10.dp, 10.dp)
                 ) {
                     Text(
-                        text = "Address",
+                        text = stringResource(R.string.ADDRESS),
                         color = LightOrange,
                         modifier = Modifier.weight(2f),
                         fontFamily = trebuchetFont,
@@ -286,17 +284,33 @@ fun ProfileScreen(
                         modifier = Modifier.weight(2f),
                         fontSize = if(viewModel.app.isBigger.value)18.sp else 14.sp,                    )
                 }
+                Row() {
+
+                }
                 Image(
                     painter = painterResource(id = R.drawable.logo),
-                    contentDescription = "Logo",
+                    contentDescription = stringResource(R.string.LOGO),
                     modifier = Modifier
                         .size(150.dp)
                         .padding(65.dp, 0.dp, 10.dp, 0.dp)
                 )
+
+                }
+
+
+
             }
         }
     }
-}
+
+
+@Composable
+private fun imageVector(viewModel: ContactViewModel) =
+    if (viewModel.app.isBigger.value)
+        Icons.Outlined.ZoomOut
+    else
+        Icons.Outlined.ZoomIn
+
 @Composable
 fun TopAppBarActionButton2(
     imageVector: ImageVector, description: String, app: ContactApp

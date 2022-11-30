@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gh0stnet.employeecontacts.ContactApp
+import com.gh0stnet.employeecontacts.feature_contacts.domain.model.People
 import com.gh0stnet.employeecontacts.feature_contacts.domain.repository.DatastoreRepo
 import com.gh0stnet.employeecontacts.feature_contacts.domain.use_case.ContactUseCases
 import com.gh0stnet.employeecontacts.feature_contacts.domain.util.OrderType
@@ -13,6 +14,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
@@ -54,4 +56,10 @@ class ContactViewModel @Inject constructor(
                 viewModelScope
             )
     }
+   fun delContact(person: People) {
+                viewModelScope.launch {
+            contactUseCases.deleteContact(person)
+        }
+    }
+
 }

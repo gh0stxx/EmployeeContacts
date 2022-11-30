@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">ROI Connect</string>
+    <string name="BACK_ARROW">back arrow</string>
+    <string name="EDIT_CONTACT">Edit contact</string>
+    <string name="PROFILE_PIC">Profile pic</string>
+    <string name="LOGO">Logo</string>
+    <string name="ADDRESS">Address</string>
+    <string name="TOGGLE_FONT">Toggle font size</string>
+    <string name="PROFILE">Profile</string>
+    <string name="TITLE">ROI Connect</string>
+    <string name="TOGGLE_THEME">Toggle theme</string>
+    <string name="ADD">Add contact</string>
+    <string name="PIC">Profile picture</string>
 </resources>
